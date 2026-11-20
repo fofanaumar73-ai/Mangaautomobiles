@@ -1,0 +1,1969 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#251633">
+<title>Checkout | MANGAAUTOMOBILES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#f5f0e8;
+  --white:#fffdf9;
+  --purple:#251633;
+  --purple-light:#382449;
+  --purple-soft:#eee8f1;
+  --gold:#bd9b70;
+  --text:#292331;
+  --muted:#827a89;
+  --border:rgba(37,22,51,.12);
+  --shadow:0 18px 55px rgba(37,22,51,.08);
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+a {
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input,select,textarea {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+}
+
+/* PRELOADER */
+
+.preloader {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:var(--purple);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  transition:.6s;
+}
+
+.preloader.hide {
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-logo {
+  font-family:'Playfair Display',serif;
+  color:white;
+  font-size:34px;
+  letter-spacing:5px;
+}
+
+.loader-line {
+  width:120px;
+  height:2px;
+  background:rgba(255,255,255,.2);
+  overflow:hidden;
+}
+
+.loader-line::after {
+  content:"";
+  display:block;
+  width:40%;
+  height:100%;
+  background:var(--gold);
+  animation:loading 1.2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  from {transform:translateX(-120%)}
+  to {transform:translateX(320%)}
+}
+
+/* HEADER */
+
+header {
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  padding:16px 6%;
+  transition:.35s;
+}
+
+header.scrolled {
+  padding:10px 6%;
+  background:rgba(245,240,232,.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 5px 30px rgba(37,22,51,.07);
+}
+
+.navbar {
+  max-width:1450px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.logo {
+  font-family:'Playfair Display',serif;
+  color:var(--purple);
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:1px;
+  white-space:nowrap;
+}
+
+.logo span {
+  display:block;
+  text-align:center;
+  font-family:'DM Sans',sans-serif;
+  font-size:8px;
+  letter-spacing:5px;
+  margin-top:3px;
+}
+
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-links a {
+  font-size:12px;
+  color:#514958;
+  font-weight:700;
+  transition:.3s;
+}
+
+.nav-links a:hover {
+  color:var(--gold);
+}
+
+.nav-actions {
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.cart-link {
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  background:var(--purple);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  position:relative;
+}
+
+.cart-count {
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:var(--gold);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:10px;
+  border:2px solid var(--cream);
+}
+
+.menu-toggle {
+  display:none;
+  background:none;
+  border:0;
+  color:var(--purple);
+  font-size:27px;
+}
+
+/* HERO */
+
+.hero {
+  min-height:350px;
+  padding:130px 7% 60px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(100deg,rgba(25,14,35,.97),rgba(25,14,35,.75)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85") center/cover;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::after {
+  content:"";
+  position:absolute;
+  width:450px;
+  height:450px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:50%;
+  right:-120px;
+  bottom:-300px;
+  box-shadow:0 0 0 55px rgba(255,255,255,.025),
+             0 0 0 110px rgba(255,255,255,.02);
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  animation:slideUp .8s ease both;
+}
+
+.eyebrow {
+  color:var(--gold);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:17px;
+}
+
+.hero h1 {
+  color:white;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(43px,7vw,72px);
+  font-weight:500;
+}
+
+.hero p {
+  color:rgba(255,255,255,.68);
+  font-size:13px;
+  line-height:1.8;
+  max-width:500px;
+  margin-top:13px;
+}
+
+/* BREADCRUMB */
+
+.breadcrumb {
+  padding:20px 7%;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.breadcrumb a {
+  color:var(--purple);
+  font-weight:700;
+}
+
+.breadcrumb span {
+  color:var(--gold);
+  margin:0 9px;
+}
+
+/* PROGRESS */
+
+.progress-section {
+  padding:15px 7% 35px;
+}
+
+.progress {
+  max-width:650px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.progress-step {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.progress-number {
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#e8e0e8;
+  color:var(--purple);
+  font-size:11px;
+}
+
+.progress-step.active .progress-number,
+.progress-step.complete .progress-number {
+  background:var(--purple);
+  color:white;
+}
+
+.progress-step.active {
+  color:var(--purple);
+}
+
+.progress-line {
+  height:1px;
+  width:75px;
+  background:var(--border);
+  margin:0 15px;
+}
+
+/* MAIN CHECKOUT */
+
+.checkout-section {
+  padding:25px 7% 100px;
+}
+
+.checkout-container {
+  max-width:1450px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 400px;
+  gap:30px;
+  align-items:start;
+}
+
+.checkout-main {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  min-width:0;
+}
+
+.checkout-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:30px;
+}
+
+.card-heading {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:25px;
+}
+
+.heading-icon {
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:var(--purple-soft);
+  color:var(--purple);
+  font-size:18px;
+}
+
+.card-heading h2 {
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  color:var(--purple);
+  font-weight:600;
+}
+
+.card-heading p {
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+/* FORM */
+
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.form-group {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.form-group.full {
+  grid-column:1/-1;
+}
+
+.form-group label {
+  color:var(--purple);
+  font-size:10px;
+  font-weight:800;
+}
+
+.form-group label span {
+  color:#b16b6b;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width:100%;
+  min-height:49px;
+  padding:13px 15px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--cream);
+  color:var(--purple);
+  outline:none;
+  font-size:11px;
+  transition:.3s;
+}
+
+.form-group textarea {
+  min-height:105px;
+  resize:vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color:var(--gold);
+  box-shadow:0 0 0 4px rgba(189,155,112,.12);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color:#aaa1ad;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color:#c97b7b;
+}
+
+/* DELIVERY METHOD */
+
+.delivery-choices {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.delivery-choice {
+  position:relative;
+}
+
+.delivery-choice input {
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.delivery-choice label {
+  min-height:105px;
+  padding:15px 9px;
+  border:1px solid var(--border);
+  background:var(--cream);
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:8px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.delivery-choice label span {
+  font-size:21px;
+}
+
+.delivery-choice label strong {
+  font-size:10px;
+  color:var(--purple);
+}
+
+.delivery-choice label small {
+  font-size:9px;
+  color:var(--muted);
+}
+
+.delivery-choice input:checked + label {
+  border-color:var(--gold);
+  background:var(--purple);
+}
+
+.delivery-choice input:checked + label strong,
+.delivery-choice input:checked + label small {
+  color:white;
+}
+
+.delivery-address {
+  margin-top:23px;
+}
+
+/* PAYMENT INFORMATION */
+
+.payment-info {
+  padding:18px;
+  background:var(--purple-soft);
+  border-radius:12px;
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+}
+
+.payment-icon {
+  color:var(--purple);
+  font-size:21px;
+}
+
+.payment-info strong {
+  display:block;
+  font-size:11px;
+  color:var(--purple);
+  margin-bottom:5px;
+}
+
+.payment-info p {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.8;
+}
+
+/* TERMS */
+
+.terms {
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  margin-top:23px;
+}
+
+.terms input {
+  width:16px;
+  height:16px;
+  margin-top:2px;
+  accent-color:var(--purple);
+  flex-shrink:0;
+}
+
+.terms label {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.8;
+}
+
+.terms a {
+  color:var(--purple);
+  font-weight:800;
+  text-decoration:underline;
+}
+
+/* SUMMARY */
+
+.order-summary {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:27px;
+  position:sticky;
+  top:105px;
+  box-shadow:0 12px 35px rgba(37,22,51,.04);
+}
+
+.order-summary h2 {
+  color:var(--purple);
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+.summary-caption {
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:25px;
+}
+
+.order-items {
+  display:flex;
+  flex-direction:column;
+  gap:17px;
+  max-height:340px;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+.order-item {
+  display:grid;
+  grid-template-columns:78px 1fr;
+  gap:13px;
+}
+
+.order-item img {
+  width:78px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+  background:var(--cream);
+}
+
+.order-item h3 {
+  color:var(--purple);
+  font-size:11px;
+  margin:4px 0 6px;
+}
+
+.order-item small {
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:5px;
+}
+
+.order-item strong {
+  color:var(--purple);
+  font-size:11px;
+}
+
+.summary-divider {
+  height:1px;
+  background:var(--border);
+  margin:22px 0;
+}
+
+.summary-line {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:15px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.summary-line strong {
+  color:var(--purple);
+  font-size:11px;
+}
+
+.summary-total {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.summary-total span {
+  color:var(--purple);
+  font-size:12px;
+  font-weight:800;
+}
+
+.summary-total strong {
+  color:var(--purple);
+  font-size:23px;
+  font-weight:800;
+}
+
+.summary-note {
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.8;
+  margin-top:16px;
+}
+
+.place-order-btn {
+  width:100%;
+  min-height:55px;
+  border:0;
+  border-radius:50px;
+  background:var(--purple);
+  color:white;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-top:24px;
+  transition:.35s;
+}
+
+.place-order-btn:hover {
+  background:var(--gold);
+  color:var(--purple);
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(37,22,51,.13);
+}
+
+.place-order-btn:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.back-to-cart {
+  display:block;
+  text-align:center;
+  color:var(--purple);
+  font-size:10px;
+  font-weight:800;
+  margin-top:18px;
+}
+
+/* EMPTY CART */
+
+.empty-state {
+  display:none;
+  max-width:650px;
+  margin:50px auto 100px;
+  padding:60px 25px;
+  background:var(--white);
+  border-radius:20px;
+  text-align:center;
+  border:1px solid var(--border);
+}
+
+.empty-state.show {
+  display:block;
+}
+
+.empty-state .empty-icon {
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  background:var(--purple-soft);
+  display:grid;
+  place-items:center;
+  margin:0 auto 22px;
+  font-size:32px;
+  color:var(--purple);
+}
+
+.empty-state h2 {
+  color:var(--purple);
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+}
+
+.empty-state p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+  margin:13px 0 24px;
+}
+
+.empty-state a {
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:40px;
+  background:var(--purple);
+  color:white;
+  font-size:10px;
+  font-weight:800;
+}
+
+/* SUCCESS SCREEN */
+
+.success-screen {
+  display:none;
+  max-width:750px;
+  margin:40px auto 100px;
+  padding:55px 35px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:22px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  animation:slideUp .7s ease both;
+}
+
+.success-screen.show {
+  display:block;
+}
+
+.success-icon {
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:var(--purple-soft);
+  color:var(--purple);
+  display:grid;
+  place-items:center;
+  margin:0 auto 25px;
+  font-size:38px;
+}
+
+.success-screen h2 {
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  color:var(--purple);
+}
+
+.success-screen p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+  max-width:510px;
+  margin:14px auto;
+}
+
+.reference-box {
+  background:var(--cream);
+  border:1px dashed var(--gold);
+  border-radius:13px;
+  padding:20px;
+  margin:25px auto;
+  max-width:390px;
+}
+
+.reference-box small {
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:7px;
+}
+
+.reference-box strong {
+  color:var(--purple);
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+.success-actions {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:27px;
+}
+
+.success-actions a,
+.success-actions button {
+  padding:15px 23px;
+  border-radius:40px;
+  background:var(--purple);
+  color:white;
+  font-size:10px;
+  font-weight:800;
+  border:0;
+}
+
+.success-actions button {
+  background:var(--gold);
+  color:var(--purple);
+}
+
+/* FOOTER */
+
+footer {
+  background:#1b1026;
+  color:white;
+  padding:65px 7% 25px;
+}
+
+.footer-grid {
+  max-width:1450px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+  gap:40px;
+  padding-bottom:45px;
+}
+
+.footer-logo {
+  color:white;
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+}
+
+.footer-logo span {
+  display:block;
+  font-family:'DM Sans',sans-serif;
+  font-size:8px;
+  letter-spacing:5px;
+  margin-top:4px;
+}
+
+.footer-about p {
+  color:rgba(255,255,255,.55);
+  font-size:11px;
+  line-height:1.9;
+  max-width:290px;
+  margin-top:18px;
+}
+
+.footer-column h4 {
+  font-size:11px;
+  margin-bottom:20px;
+  letter-spacing:1px;
+}
+
+.footer-column a {
+  display:block;
+  color:rgba(255,255,255,.55);
+  font-size:11px;
+  margin-bottom:13px;
+  transition:.3s;
+}
+
+.footer-column a:hover {
+  color:var(--gold);
+  transform:translateX(4px);
+}
+
+.footer-bottom {
+  max-width:1450px;
+  margin:auto;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:22px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+  color:rgba(255,255,255,.4);
+  font-size:10px;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+  from {
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px) {
+  .checkout-container {
+    grid-template-columns:1fr 340px;
+    gap:20px;
+  }
+
+  .footer-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:760px) {
+  header {
+    padding:14px 5%;
+  }
+
+  .logo {
+    font-size:18px;
+  }
+
+  .nav-links {
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:min(82%,360px);
+    height:100vh;
+    background:var(--white);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding:45px;
+    gap:30px;
+    box-shadow:-15px 0 40px rgba(0,0,0,.1);
+    transition:.4s;
+  }
+
+  .nav-links.open {
+    right:0;
+  }
+
+  .nav-links a {
+    font-size:16px;
+  }
+
+  .menu-toggle {
+    display:block;
+  }
+
+  .hero {
+    min-height:310px;
+    padding:120px 6% 55px;
+  }
+
+  .breadcrumb,
+  .progress-section {
+    padding-left:5%;
+    padding-right:5%;
+  }
+
+  .progress-line {
+    width:35px;
+    margin:0 7px;
+  }
+
+  .progress-step {
+    gap:6px;
+    font-size:9px;
+  }
+
+  .progress-number {
+    width:27px;
+    height:27px;
+  }
+
+  .checkout-section {
+    padding:20px 5% 75px;
+  }
+
+  .checkout-container {
+    grid-template-columns:1fr;
+  }
+
+  .order-summary {
+    position:static;
+  }
+
+  .checkout-card {
+    padding:23px 18px;
+  }
+}
+
+@media(max-width:480px) {
+  .form-grid {
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full {
+    grid-column:auto;
+  }
+
+  .delivery-choices {
+    grid-template-columns:1fr;
+  }
+
+  .delivery-choice label {
+    min-height:75px;
+    flex-direction:row;
+    justify-content:flex-start;
+    text-align:left;
+    padding:13px 17px;
+  }
+
+  .delivery-choice label span {
+    width:35px;
+    text-align:center;
+  }
+
+  .progress-step {
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .progress-line {
+    width:30px;
+    margin:0 8px 17px;
+  }
+
+  .progress-section {
+    padding-bottom:25px;
+  }
+
+  .card-heading h2 {
+    font-size:21px;
+  }
+
+  .success-screen {
+    padding:40px 20px;
+    margin:25px 5% 70px;
+  }
+
+  .success-screen h2 {
+    font-size:30px;
+  }
+
+  .footer-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="loader-logo">MANGA</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav class="navbar">
+
+    <a href="index.html" class="logo">
+      MANGAAUTOMOBILES
+      <span>DRIVE YOUR DREAM</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="showroom.html">Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+        ♧
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Almost at your destination</div>
+    <h1>Complete Your Order.</h1>
+    <p>
+      Provide your details and delivery preference.
+      Our team will review your vehicle request and
+      guide you through the next steps.
+    </p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="cart.html">Cart</a>
+  <span>›</span>
+  Checkout
+</div>
+
+<!-- PROGRESS -->
+<section class="progress-section">
+  <div class="progress">
+
+    <div class="progress-step complete">
+      <span class="progress-number">✓</span>
+      <span>Cart</span>
+    </div>
+
+    <div class="progress-line"></div>
+
+    <div class="progress-step active">
+      <span class="progress-number">2</span>
+      <span>Checkout</span>
+    </div>
+
+    <div class="progress-line"></div>
+
+    <div class="progress-step">
+      <span class="progress-number">3</span>
+      <span>Confirmation</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHECKOUT -->
+<section class="checkout-section" id="checkoutSection">
+
+  <div class="checkout-container" id="checkoutContainer">
+
+    <!-- CUSTOMER FORM -->
+    <form class="checkout-main" id="checkoutForm">
+
+      <!-- PERSONAL INFORMATION -->
+      <div class="checkout-card">
+
+        <div class="card-heading">
+          <div class="heading-icon">♙</div>
+          <div>
+            <h2>Customer Information</h2>
+            <p>Tell us how to reach you about your vehicle request.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="firstName">First Name <span>*</span></label>
+            <input type="text" id="firstName" name="firstName"
+              placeholder="Enter your first name" autocomplete="given-name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name <span>*</span></label>
+            <input type="text" id="lastName" name="lastName"
+              placeholder="Enter your last name" autocomplete="family-name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span>*</span></label>
+            <input type="email" id="email" name="email"
+              placeholder="example@email.com" autocomplete="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number <span>*</span></label>
+            <input type="tel" id="phone" name="phone"
+              placeholder="+234 800 000 0000" autocomplete="tel" required>
+          </div>
+
+          <div class="form-group full">
+            <label for="contactMethod">Preferred Contact Method</label>
+            <select id="contactMethod" name="contactMethod">
+              <option value="Phone Call">Phone Call</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Email">Email</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- DELIVERY -->
+      <div class="checkout-card">
+
+        <div class="card-heading">
+          <div class="heading-icon">⌖</div>
+          <div>
+            <h2>Delivery Information</h2>
+            <p>Choose how you would like to receive your vehicle.</p>
+          </div>
+        </div>
+
+        <div class="delivery-choices">
+
+          <div class="delivery-choice">
+            <input type="radio" id="nationwide" name="delivery"
+              value="Nationwide Delivery" checked>
+            <label for="nationwide">
+              <span>⌖</span>
+              <div>
+                <strong>Nationwide Delivery</strong>
+                <small>Across Nigeria</small>
+              </div>
+            </label>
+          </div>
+
+          <div class="delivery-choice">
+            <input type="radio" id="pickup" name="delivery"
+              value="Showroom Pickup">
+            <label for="pickup">
+              <span>⌂</span>
+              <div>
+                <strong>Showroom Pickup</strong>
+                <small>Collect in person</small>
+              </div>
+            </label>
+          </div>
+
+          <div class="delivery-choice">
+            <input type="radio" id="surprise" name="delivery"
+              value="Surprise Delivery">
+            <label for="surprise">
+              <span>✧</span>
+              <div>
+                <strong>Surprise Delivery</strong>
+                <small>Special arrangement</small>
+              </div>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="delivery-address" id="deliveryAddress">
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="address">Delivery Address <span id="addressRequired">*</span></label>
+              <input type="text" id="address" name="address"
+                placeholder="House number, street and area"
+                autocomplete="street-address" required>
+            </div>
+
+            <div class="form-group">
+              <label for="city">City <span id="cityRequired">*</span></label>
+              <input type="text" id="city" name="city"
+                placeholder="e.g. Lagos" required>
+            </div>
+
+            <div class="form-group">
+              <label for="state">State <span id="stateRequired">*</span></label>
+              <select id="state" name="state" required>
+                <option value="">Select State</option>
+                <option>Abia</option>
+                <option>Adamawa</option>
+                <option>Akwa Ibom</option>
+                <option>Anambra</option>
+                <option>Bauchi</option>
+                <option>Bayelsa</option>
+                <option>Benue</option>
+                <option>Borno</option>
+                <option>Cross River</option>
+                <option>Delta</option>
+                <option>Ebonyi</option>
+                <option>Edo</option>
+                <option>Ekiti</option>
+                <option>Enugu</option>
+                <option>FCT Abuja</option>
+                <option>Gombe</option>
+                <option>Imo</option>
+                <option>Jigawa</option>
+                <option>Kaduna</option>
+                <option>Kano</option>
+                <option>Katsina</option>
+                <option>Kebbi</option>
+                <option>Kogi</option>
+                <option>Kwara</option>
+                <option>Lagos</option>
+                <option>Nasarawa</option>
+                <option>Niger</option>
+                <option>Ogun</option>
+                <option>Ondo</option>
+                <option>Osun</option>
+                <option>Oyo</option>
+                <option>Plateau</option>
+                <option>Rivers</option>
+                <option>Sokoto</option>
+                <option>Taraba</option>
+                <option>Yobe</option>
+                <option>Zamfara</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="deliveryNotes">Additional Delivery Instructions</label>
+              <textarea id="deliveryNotes" name="deliveryNotes"
+                placeholder="Any additional information about your delivery preference?"></textarea>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="checkout-card">
+
+        <div class="card-heading">
+          <div class="heading-icon">◇</div>
+          <div>
+            <h2>Payment Arrangement</h2>
+            <p>Payment will be discussed after your request is reviewed.</p>
+          </div>
+        </div>
+
+        <div class="payment-info">
+          <div class="payment-icon">✧</div>
+          <div>
+            <strong>Payment Confirmation With Our Team</strong>
+            <p>
+              No payment is collected on this page. Once we receive
+              your vehicle request, our team will confirm availability,
+              final pricing, delivery arrangements and approved
+              payment instructions with you.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:22px">
+          <label for="orderNotes">Additional Order Notes</label>
+          <textarea id="orderNotes" name="orderNotes"
+            placeholder="Tell us anything else we should know about your order..."></textarea>
+        </div>
+
+        <div class="terms">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">
+            I confirm that the information provided is accurate
+            and understand that this is a vehicle enquiry/order
+            request subject to availability and confirmation by
+            MANGAAUTOMOBILES.
+          </label>
+        </div>
+
+      </div>
+
+    </form>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="order-summary">
+
+      <h2>Your Order</h2>
+      <p class="summary-caption">Review your selected vehicles.</p>
+
+      <div class="order-items" id="orderItems"></div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-line">
+        <span>Vehicle quantity</span>
+        <strong id="itemCount">0</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Vehicle subtotal</span>
+        <strong id="subtotal">$0</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Delivery</span>
+        <strong id="deliveryCost">To be confirmed</strong>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-total">
+        <span>Estimated Total</span>
+        <strong id="grandTotal">$0</strong>
+      </div>
+
+      <p class="summary-note">
+        This is an estimated vehicle subtotal. Delivery, taxes,
+        registration and any other applicable charges will be
+        confirmed by our team before an order is accepted.
+      </p>
+
+      <button type="submit" form="checkoutForm"
+        class="place-order-btn" id="placeOrder">
+        SUBMIT ORDER REQUEST ↗
+      </button>
+
+      <a href="cart.html" class="back-to-cart">← RETURN TO CART</a>
+
+    </aside>
+
+  </div>
+
+  <!-- EMPTY CART -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">♧</div>
+    <h2>Your Cart Is Empty.</h2>
+    <p>
+      You need to select a vehicle before proceeding
+      to checkout. Explore our collection to find your next automobile.
+    </p>
+    <a href="showroom.html">EXPLORE SHOWROOM ↗</a>
+  </div>
+
+  <!-- SUCCESS SCREEN -->
+  <div class="success-screen" id="successScreen">
+
+    <div class="success-icon">✓</div>
+
+    <div class="eyebrow">Request submitted</div>
+
+    <h2>Thank You for Choosing MANGA.</h2>
+
+    <p>
+      Your vehicle request has been saved in this browser.
+      Keep your reference number for your records. Our live
+      dealership team has not yet received this request.
+    </p>
+
+    <div class="reference-box">
+      <small>YOUR REQUEST REFERENCE</small>
+      <strong id="orderReference">MANGA-000000</strong>
+    </div>
+
+    <p id="successSummary"></p>
+
+    <div class="success-actions">
+      <a href="showroom.html">EXPLORE MORE VEHICLES</a>
+      <button type="button" id="printOrder">PRINT SUMMARY</button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-grid">
+
+    <div class="footer-about">
+      <a href="index.html" class="footer-logo">
+        MANGAAUTOMOBILES
+        <span>DRIVE YOUR DREAM</span>
+      </a>
+
+      <p>
+        A destination for exceptional automobiles.
+        Discover a carefully selected range of vehicles
+        and experience automotive shopping with confidence.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>EXPLORE</h4>
+      <a href="index.html">Home</a>
+      <a href="showroom.html">Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>YOUR SELECTION</h4>
+      <a href="cart.html">Shopping Cart</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="showroom.html">Browse Vehicles</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>ASSISTANCE</h4>
+      <a href="index.html#contact">Vehicle Enquiries</a>
+      <a href="index.html#faq">FAQs</a>
+      <a href="index.html#contact">Speak to Our Team</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> MANGAAUTOMOBILES. All rights reserved.</span>
+    <span>Luxury is a journey. Enjoy the drive.</span>
+  </div>
+
+</footer>
+
+<script>
+/* ======================================
+   STORAGE
+====================================== */
+
+const CART_KEY = "manga_cart";
+const ORDERS_KEY = "manga_orders";
+
+const checkoutContainer = document.getElementById("checkoutContainer");
+const emptyState = document.getElementById("emptyState");
+const successScreen = document.getElementById("successScreen");
+const checkoutForm = document.getElementById("checkoutForm");
+const placeOrderButton = document.getElementById("placeOrder");
+
+let submittedOrder = null;
+
+function getCart() {
+  try {
+    const cart = JSON.parse(localStorage.getItem(CART_KEY));
+    return Array.isArray(cart) ? cart : [];
+  } catch(error) {
+    return [];
+  }
+}
+
+function formatPrice(amount) {
+  return "$" + Number(amount || 0).toLocaleString("en-US");
+}
+
+function getQuantity(item) {
+  return Math.max(1, Number(item.qty) || 1);
+}
+
+function getUnitPrice(item) {
+  return Math.max(0, Number(item.unitPrice ?? item.price) || 0);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[character]);
+}
+
+/* ======================================
+   CART DISPLAY
+====================================== */
+
+function renderOrder() {
+  const cart = getCart();
+
+  const itemCount = cart.reduce(
+    (total,item) => total + getQuantity(item),0
+  );
+
+  const subtotal = cart.reduce(
+    (total,item) => total + getQuantity(item) * getUnitPrice(item),0
+  );
+
+  document.getElementById("cartCount").textContent = itemCount;
+
+  if (!cart.length) {
+    checkoutContainer.style.display = "none";
+    emptyState.classList.add("show");
+    return;
+  }
+
+  checkoutContainer.style.display = "grid";
+  emptyState.classList.remove("show");
+
+  document.getElementById("orderItems").innerHTML =
+    cart.map(item => {
+      const name = item.name || item.title || "Selected Vehicle";
+      const image = item.image || "";
+
+      const imageMarkup = image
+        ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(name)}">`
+        : `<div style="width:78px;height:70px;background:#f5f0e8;border-radius:10px;display:grid;place-items:center;font-size:10px;color:#827a89">Vehicle</div>`;
+
+      return `
+        <div class="order-item">
+          ${imageMarkup}
+          <div>
+            <h3>${escapeHTML(item.brand || "Automobile")} ${escapeHTML(name)}</h3>
+            <small>${escapeHTML(item.condition || "Brand New")} · Qty: ${getQuantity(item)}</small>
+            <strong>${formatPrice(getUnitPrice(item) * getQuantity(item))}</strong>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+  document.getElementById("itemCount").textContent = itemCount;
+  document.getElementById("subtotal").textContent = formatPrice(subtotal);
+  document.getElementById("grandTotal").textContent = formatPrice(subtotal);
+
+  document.getElementById("deliveryCost").textContent = "To be confirmed";
+}
+
+/* ======================================
+   DELIVERY SELECTION
+====================================== */
+
+const deliveryInputs = document.querySelectorAll('input[name="delivery"]');
+const deliveryAddress = document.getElementById("deliveryAddress");
+const addressInput = document.getElementById("address");
+const cityInput = document.getElementById("city");
+const stateInput = document.getElementById("state");
+
+function getSelectedDelivery() {
+  return document.querySelector('input[name="delivery"]:checked')?.value
+    || "Nationwide Delivery";
+}
+
+function updateDeliveryFields() {
+  const method = getSelectedDelivery();
+
+  const isPickup = method === "Showroom Pickup";
+
+  deliveryAddress.style.display = isPickup ? "none" : "block";
+
+  addressInput.required = !isPickup;
+  cityInput.required = !isPickup;
+  stateInput.required = !isPickup;
+
+  document.getElementById("addressRequired").textContent =
+    isPickup ? "" : "*";
+
+  document.getElementById("cityRequired").textContent =
+    isPickup ? "" : "*";
+
+  document.getElementById("stateRequired").textContent =
+    isPickup ? "" : "*";
+}
+
+deliveryInputs.forEach(input => {
+  input.addEventListener("change",updateDeliveryFields);
+});
+
+/* ======================================
+   INITIAL DELIVERY PREFERENCE
+====================================== */
+
+const savedDelivery = sessionStorage.getItem("manga_delivery");
+const cartAtStart = getCart();
+
+const cartDelivery = cartAtStart.length
+  ? cartAtStart[0].delivery
+  : null;
+
+const initialDelivery = savedDelivery || cartDelivery || "Nationwide Delivery";
+
+const matchingDelivery = document.querySelector(
+  `input[name="delivery"][value="${CSS.escape(initialDelivery)}"]`
+);
+
+if (matchingDelivery) {
+  matchingDelivery.checked = true;
+}
+
+updateDeliveryFields();
+
+/* ======================================
+   ORDER REFERENCE
+====================================== */
+
+function createReference() {
+  const timePart = Date.now().toString().slice(-7);
+  const randomPart = Math.floor(100 + Math.random() * 900);
+
+  return "MANGA-" + timePart + randomPart;
+}
+
+/* ======================================
+   FORM SUBMISSION
+====================================== */
+
+checkoutForm.addEventListener("submit",event => {
+  event.preventDefault();
+
+  if (!checkoutForm.reportValidity()) {
+    return;
+  }
+
+  const cart = getCart();
+
+  if (!cart.length) {
+    alert("Your cart is empty. Please select a vehicle first.");
+    return;
+  }
+
+  const formData = new FormData(checkoutForm);
+
+  const delivery = getSelectedDelivery();
+
+  const subtotal = cart.reduce(
+    (total,item) => total + getUnitPrice(item) * getQuantity(item),0
+  );
+
+  const order = {
+    reference:createReference(),
+    date:new Date().toISOString(),
+
+    customer:{
+      firstName:formData.get("firstName"),
+      lastName:formData.get("lastName"),
+      email:formData.get("email"),
+      phone:formData.get("phone"),
+      contactMethod:formData.get("contactMethod")
+    },
+
+    delivery:{
+      method:delivery,
+      address:delivery === "Showroom Pickup" ? "" : formData.get("address"),
+      city:delivery === "Showroom Pickup" ? "" : formData.get("city"),
+      state:delivery === "Showroom Pickup" ? "" : formData.get("state"),
+      notes:formData.get("deliveryNotes")
+    },
+
+    paymentStatus:"Not paid",
+    orderStatus:"Request submitted locally",
+
+    vehicles:cart.map(item => ({
+      id:item.id,
+      brand:item.brand,
+      name:item.name || item.title,
+      condition:item.condition,
+      unitPrice:getUnitPrice(item),
+      quantity:getQuantity(item),
+      delivery:item.delivery || delivery
+    })),
+
+    subtotal:subtotal,
+    additionalNotes:formData.get("orderNotes")
+  };
+
+  try {
+    const existingOrders = JSON.parse(
+      localStorage.getItem(ORDERS_KEY) || "[]"
+    );
+
+    if (!Array.isArray(existingOrders)) {
+      throw new Error("Invalid order storage");
+    }
+
+    existingOrders.push(order);
+
+    localStorage.setItem(ORDERS_KEY,JSON.stringify(existingOrders));
+
+  } catch(error) {
+    alert("Unable to save this request in your browser. Please check your browser storage and try again.");
+    return;
+  }
+
+  submittedOrder = order;
+
+  // Clear the cart only after the local order is saved successfully.
+  localStorage.removeItem(CART_KEY);
+  sessionStorage.removeItem("manga_delivery");
+
+  showSuccess(order);
+});
+
+/* ======================================
+   SUCCESS SCREEN
+====================================== */
+
+function showSuccess(order) {
+
+  checkoutContainer.style.display = "none";
+  document.getElementById("checkoutSection").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+  document.querySelector(".progress-section").style.display = "none";
+
+  successScreen.classList.add("show");
+
+  document.getElementById("orderReference").textContent =
+    order.reference;
+
+  document.getElementById("successSummary").textContent =
+    `${order.vehicles.length} vehicle selection(s) recorded. Estimated vehicle subtotal: ${formatPrice(order.subtotal)}. Delivery: ${order.delivery.method}.`;
+}
+
+/* ======================================
+   PRINT ORDER SUMMARY
+====================================== */
+
+document.getElementById("printOrder").addEventListener("click",() => {
+  if (!submittedOrder) return;
+
+  const order = submittedOrder;
+
+  const vehicleRows = order.vehicles.map(item => `
+    <tr>
+      <td>${escapeHTML(item.brand)} ${escapeHTML(item.name)}</td>
+      <td>${escapeHTML(item.condition)}</td>
+      <td>${item.quantity}</td>
+      <td>${formatPrice(item.unitPrice * item.quantity)}</td>
+    </tr>
+  `).join("");
+
+  const printWindow = window.open("","_blank");
+
+  if (!printWindow) {
+    alert("Please allow pop-ups to print your order summary.");
+    return;
+  }
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>${escapeHTML(order.reference)} - MANGAAUTOMOBILES</title>
+      <style>
+        body{font-family:Arial,sans-serif;padding:40px;color:#251633}
+        h1{font-size:25px;margin-bottom:8px}
+        p{font-size:12px;line-height:1.7}
+        table{width:100%;border-collapse:collapse;margin-top:25px}
+        th,td{text-align:left;padding:12px;border-bottom:1px solid #ddd;font-size:12px}
+        th{background:#eee8f1}
+        .total{font-size:19px;font-weight:bold;margin-top:25px}
+        .note{margin-top:35px;color:#777}
+      </style>
+    </head>
+    <body>
+      <h1>MANGAAUTOMOBILES</h1>
+      <p>Customer vehicle request summary</p>
+      <p><strong>Reference:</strong> ${escapeHTML(order.reference)}</p>
+      <p><strong>Date:</strong> ${escapeHTML(new Date(order.date).toLocaleString())}</p>
+      <p><strong>Customer:</strong> ${escapeHTML(order.customer.firstName)} ${escapeHTML(order.customer.lastName)}</p>
+      <p><strong>Email:</strong> ${escapeHTML(order.customer.email)}</p>
+      <p><strong>Phone:</strong> ${escapeHTML(order.customer.phone)}</p>
+      <p><strong>Delivery:</strong> ${escapeHTML(order.delivery.method)}</p>
+      <p><strong>Address:</strong> ${escapeHTML(order.delivery.address || "Showroom collection")}, ${escapeHTML(order.delivery.city)}, ${escapeHTML(order.delivery.state)}</p>
+      <table>
+        <thead>
+          <tr><th>Vehicle</th><th>Condition</th><th>Qty</th><th>Price</th></tr>
+        </thead>
+        <tbody>${vehicleRows}</tbody>
+      </table>
+      <div class="total">Estimated subtotal: ${formatPrice(order.subtotal)}</div>
+      <p class="note">This is a locally generated request summary, not a confirmed order or payment receipt. Final availability and charges require dealership confirmation.</p>
+      <script>window.onload=()=>window.print();<\/script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+});
+
+/* ======================================
+   HEADER
+====================================== */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll",() => {
+  header.classList.toggle("scrolled",window.scrollY > 40);
+},{passive:true});
+
+/* ======================================
+   MOBILE MENU
+====================================== */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click",() => {
+  navLinks.classList.toggle("open");
+  menuToggle.textContent =
+    navLinks.classList.contains("open") ? "×" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click",() => {
+    navLinks.classList.remove("open");
+    menuToggle.textContent = "☰";
+  });
+});
+
+/* ======================================
+   INITIALISE
+====================================== */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderOrder();
+
+window.addEventListener("load",() => {
+  document.getElementById("preloader").classList.add("hide");
+});
+</script>
+
+</body>
+</html>
