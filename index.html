@@ -1963,6 +1963,304 @@ footer a {
 
 }
 
+   
+/* =============== PREMIUM TESTIMONIALS =============== */
+
+.testimonials-section {
+  position: relative;
+  padding: 110px 6%;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.testimonials-inner {
+  max-width: 1320px;
+  margin: auto;
+}
+
+.testimonials-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 38px;
+}
+
+.testimonials-eyebrow {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.testimonials-title {
+  color: var(--purple);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: .98;
+  letter-spacing: -.07em;
+  margin: 0;
+}
+
+.testimonials-title span {
+  color: var(--purple-light);
+}
+
+.testimonials-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-arrow {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: .3s ease;
+}
+
+.testimonial-arrow:hover {
+  background: var(--white);
+  color: var(--purple);
+  transform: scale(1.06);
+}
+
+.testimonial-arrow:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.testimonial-panel {
+  position: relative;
+  min-height: 350px;
+  display: grid;
+  grid-template-columns: .8fr 1.7fr;
+  align-items: center;
+  gap: 55px;
+  padding: 55px 65px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(115,88,139,.35), transparent 35%),
+    linear-gradient(125deg, #251633, #342342 65%, #21152d);
+  box-shadow: 0 25px 65px rgba(37,22,51,.14);
+}
+
+.testimonial-panel::after {
+  content: "“";
+  position: absolute;
+  right: 35px;
+  bottom: -145px;
+  font-family: Georgia, serif;
+  font-size: 430px;
+  line-height: 1;
+  color: rgba(255,255,255,.035);
+  pointer-events: none;
+}
+
+.testimonial-side {
+  position: relative;
+  z-index: 1;
+  border-right: 1px solid rgba(255,255,255,.15);
+  padding-right: 35px;
+}
+
+.testimonial-label {
+  color: #c7b5d4;
+  font-size: 10px;
+  letter-spacing: .2em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.testimonial-rating {
+  margin-top: 35px;
+  color: #d9b16d;
+  font-size: 19px;
+  letter-spacing: 5px;
+}
+
+.testimonial-count {
+  margin-top: 28px;
+  color: rgba(255,255,255,.55);
+  font-size: 12px;
+  letter-spacing: .12em;
+}
+
+.testimonial-main {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.testimonial-slide {
+  display: none;
+  animation: testimonialReveal .55s ease both;
+}
+
+.testimonial-slide.active {
+  display: block;
+}
+
+@keyframes testimonialReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonial-quote-mark {
+  color: #d9b16d;
+  font-family: Georgia, serif;
+  font-size: 75px;
+  line-height: .7;
+  margin-bottom: 20px;
+}
+
+.testimonial-quote {
+  color: #fffaf5;
+  font-size: clamp(1.35rem, 2.7vw, 2.35rem);
+  line-height: 1.35;
+  letter-spacing: -.045em;
+  font-weight: 500;
+  max-width: 850px;
+  margin: 0;
+}
+
+.testimonial-author {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.testimonial-author-info strong {
+  display: block;
+  color: white;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.testimonial-author-info span {
+  display: block;
+  color: rgba(255,255,255,.55);
+  font-size: 10px;
+  letter-spacing: .12em;
+  margin-top: 7px;
+}
+
+.testimonial-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.testimonial-progress {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.testimonial-dot {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-radius: 20px;
+  padding: 0;
+  background: rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.testimonial-dot.active {
+  width: 27px;
+  background: #d9b16d;
+}
+
+.testimonial-arrows {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 750px) {
+  .testimonials-section {
+    padding: 75px 5%;
+  }
+
+  .testimonials-top {
+    align-items: center;
+  }
+
+  .testimonial-panel {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 35px 25px;
+    border-radius: 22px;
+  }
+
+  .testimonial-side {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    padding: 0 0 20px;
+  }
+
+  .testimonial-rating {
+    margin-top: 15px;
+  }
+
+  .testimonial-count {
+    margin-top: 12px;
+  }
+
+  .testimonial-quote-mark {
+    font-size: 60px;
+  }
+
+  .testimonial-author {
+    align-items: start;
+  }
+
+  .testimonial-arrow {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 450px) {
+  .testimonials-top {
+    display: block;
+  }
+
+  .testimonials-controls {
+    margin-top: 22px;
+  }
+
+  .testimonial-panel {
+    padding: 30px 21px;
+  }
+
+  .testimonial-quote {
+    font-size: 1.35rem;
+  }
+}
+
+
 </style>
 </head>
 
@@ -2552,39 +2850,102 @@ footer a {
 </section>
 
 
-<!-- =========================
-     CUSTOMER REVIEWS
-========================= -->
 
-<section class="content-section reviews-section" id="reviews">
+<!-- PREMIUM TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
 
-    <div class="section-heading">
+    <div class="testimonials-top">
+      <div>
+        <span class="testimonials-eyebrow">Client experiences</span>
+        <h2 class="testimonials-title">
+          Words That <span>Move Us.</span>
+        </h2>
+      </div>
 
-        <div>
-            <div class="section-label">
-                CLIENT EXPERIENCES
+      <div class="testimonials-controls">
+        <button class="testimonial-arrow" id="testimonialPrev" aria-label="Previous testimonial">
+          ←
+        </button>
+        <button class="testimonial-arrow" id="testimonialNext" aria-label="Next testimonial">
+          →
+        </button>
+      </div>
+    </div>
+
+    <div class="testimonial-panel">
+
+      <div class="testimonial-side">
+        <span class="testimonial-label">The MANGA experience</span>
+        <div class="testimonial-rating">★★★★★</div>
+        <div class="testimonial-count" id="testimonialCount">01 / 03</div>
+      </div>
+
+      <div class="testimonial-main">
+
+        <div class="testimonial-slides">
+
+          <article class="testimonial-slide active">
+            <div class="testimonial-quote-mark">“</div>
+            <p class="testimonial-quote">
+              I liked how straightforward the process was. No pressure, just helpful information.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <strong>S. James</strong>
+                <span>Port Harcourt</span>
+              </div>
             </div>
+          </article>
 
-            <h2>Words That Move Us.</h2>
+          <article class="testimonial-slide">
+            <div class="testimonial-quote-mark">“</div>
+            <p class="testimonial-quote">
+              Replace this with your second genuine customer testimonial.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <strong>Customer Name</strong>
+                <span>Customer Location</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-slide">
+            <div class="testimonial-quote-mark">“</div>
+            <p class="testimonial-quote">
+              Replace this with your third genuine customer testimonial.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-author-info">
+                <strong>Customer Name</strong>
+                <span>Customer Location</span>
+              </div>
+            </div>
+          </article>
+
         </div>
 
-    </div>
+        <div class="testimonial-navigation">
+          <div class="testimonial-progress" id="testimonialDots">
+            <button class="testimonial-dot active" aria-label="Show testimonial 1"></button>
+            <button class="testimonial-dot" aria-label="Show testimonial 2"></button>
+            <button class="testimonial-dot" aria-label="Show testimonial 3"></button>
+          </div>
 
-    <div class="review-box">
-
-        <div class="stars">
-            ★★★★★
+          <div class="testimonial-arrows">
+            <button class="testimonial-arrow" id="testimonialPrevBottom" aria-label="Previous testimonial">←</button>
+            <button class="testimonial-arrow" id="testimonialNextBottom" aria-label="Next testimonial">→</button>
+          </div>
         </div>
 
-        <div class="review-text" id="reviewText"></div>
-
-        <div class="review-author" id="reviewAuthor"></div>
-
-        <div class="review-dots" id="reviewDots"></div>
-
+      </div>
     </div>
 
+  </div>
 </section>
+<!-- END PREMIUM TESTIMONIALS -->
+
 
 
 <!-- =========================
@@ -3222,6 +3583,93 @@ if (justLandedContainer) {
   }
 }
 
+   
+/* =============== TESTIMONIAL CAROUSEL =============== */
+
+(() => {
+  const slides = document.querySelectorAll(".testimonial-slide");
+  const dots = document.querySelectorAll(".testimonial-dot");
+  const count = document.getElementById("testimonialCount");
+
+  if (!slides.length || !dots.length || !count) return;
+
+  let current = 0;
+  let autoSlide;
+
+  function showTestimonial(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === current);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+      dot.setAttribute("aria-current", i === current ? "true" : "false");
+    });
+
+    count.textContent =
+      `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+  }
+
+  function nextTestimonial() {
+    showTestimonial(current + 1);
+  }
+
+  function previousTestimonial() {
+    showTestimonial(current - 1);
+  }
+
+  const nextButtons = [
+    document.getElementById("testimonialNext"),
+    document.getElementById("testimonialNextBottom")
+  ];
+
+  const previousButtons = [
+    document.getElementById("testimonialPrev"),
+    document.getElementById("testimonialPrevBottom")
+  ];
+
+  nextButtons.forEach(button => {
+    if (button) button.addEventListener("click", () => {
+      nextTestimonial();
+      restartAutoSlide();
+    });
+  });
+
+  previousButtons.forEach(button => {
+    if (button) button.addEventListener("click", () => {
+      previousTestimonial();
+      restartAutoSlide();
+    });
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showTestimonial(index);
+      restartAutoSlide();
+    });
+  });
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextTestimonial, 5000);
+  }
+
+  function restartAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  const panel = document.querySelector(".testimonial-panel");
+
+  if (panel) {
+    panel.addEventListener("mouseenter", () => clearInterval(autoSlide));
+    panel.addEventListener("mouseleave", restartAutoSlide);
+  }
+
+  showTestimonial(0);
+  startAutoSlide();
+})();
 
 
 </script>
