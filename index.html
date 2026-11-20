@@ -3250,60 +3250,6 @@ featuredContainer.innerHTML = featured.map(car => `
 `).join("");
 
 
-/* TEN REVIEW SLIDER */
-
-const reviews = [
-
-    ["The team kept communication clear from the first enquiry. The whole process felt considered and professional.", "A. Okafor · Lagos"],
-
-    ["I appreciated having the vehicle details and options explained before making a decision.", "T. Williams · Abuja"],
-
-    ["The showroom experience was smooth, and the team was patient with all my questions.", "M. Bello · Kano"],
-
-    ["A very polished experience. I knew what the next step was at every point.", "D. Eze · Enugu"],
-
-    ["The vehicle presentation was detailed and the communication was consistent.", "K. Adebayo · Ibadan"],
-
-    ["I liked how straightforward the process was. No pressure, just helpful information.", "S. James · Port Harcourt"],
-
-    ["The team helped me compare options and understand the differences clearly.", "F. Musa · Kaduna"],
-
-    ["Professional service and a lovely selection of vehicles. I would enquire again.", "R. Adeyemi · Lagos"],
-
-    ["The delivery arrangements were explained clearly and updates were timely.", "N. Udo · Uyo"],
-
-    ["A premium experience from enquiry to collection. Everything was handled thoughtfully.", "P. Nwosu · Owerri"]
-
-];
-
-let reviewIndex = 0;
-
-function showReview() {
-
-    document.getElementById("reviewText").textContent =
-        "“" + reviews[reviewIndex][0] + "”";
-
-    document.getElementById("reviewAuthor").textContent =
-        reviews[reviewIndex][1];
-
-    document.getElementById("reviewDots").innerHTML =
-        reviews.map((review, index) => `
-            <span class="review-dot ${index === reviewIndex ? "active" : ""}"></span>
-        `).join("");
-
-}
-
-showReview();
-
-setInterval(() => {
-
-    reviewIndex = (reviewIndex + 1) % reviews.length;
-
-    showReview();
-
-}, 5000);
-
-
 /* FAQ ACCORDION */
 
 const faqs = [
