@@ -1681,6 +1681,270 @@ footer a {
     padding-top: 100px;
 }
 
+   
+/* ================= JUST LANDED ================= */
+
+.just-landed {
+  position: relative;
+  padding: 110px 6%;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.just-landed::before {
+  content: "ARRIVALS";
+  position: absolute;
+  top: 65px;
+  right: -20px;
+  font-size: clamp(5rem, 15vw, 13rem);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  color: rgba(37, 22, 51, 0.035);
+  pointer-events: none;
+}
+
+.landed-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.landed-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 42px;
+}
+
+.landed-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--purple-light);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.landed-eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--purple-light);
+}
+
+.landed-heading h2 {
+  color: var(--purple);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.065em;
+  margin: 0;
+}
+
+.landed-heading p {
+  max-width: 390px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 15px 0 0;
+}
+
+.landed-view-all {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--purple);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  transition: .3s ease;
+}
+
+.landed-view-all:hover {
+  background: var(--purple);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.landed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.landed-card {
+  min-width: 0;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 23px;
+  background: #eee8e0;
+  text-decoration: none;
+  color: var(--purple);
+  transform: translateY(25px);
+  opacity: 0;
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2,.7,.2,1),
+    box-shadow .35s ease;
+}
+
+.landed-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.landed-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 55px rgba(37, 22, 51, .13);
+}
+
+.landed-image {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  background: #ded7ce;
+}
+
+.landed-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.landed-card:hover .landed-image img {
+  transform: scale(1.07);
+}
+
+.landed-badge {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  padding: 9px 13px;
+  border-radius: 30px;
+  background: rgba(37, 22, 51, .88);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  backdrop-filter: blur(12px);
+}
+
+.landed-number {
+  position: absolute;
+  right: 17px;
+  bottom: 14px;
+  color: rgba(255,255,255,.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.landed-info {
+  padding: 24px;
+}
+
+.landed-brand {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+.landed-info h3 {
+  margin: 0;
+  color: var(--purple);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  letter-spacing: -.04em;
+}
+
+.landed-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 23px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(37,22,51,.12);
+}
+
+.landed-meta span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.landed-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--purple);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+.landed-explore b {
+  font-size: 17px;
+  transition: transform .3s ease;
+}
+
+.landed-card:hover .landed-explore b {
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 900px) {
+  .landed-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landed-heading {
+    align-items: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .just-landed {
+    padding: 75px 5%;
+  }
+
+  .landed-heading {
+    display: block;
+  }
+
+  .landed-view-all {
+    margin-top: 22px;
+  }
+
+  .landed-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .landed-image {
+    height: 235px;
+  }
+
+  .landed-info {
+    padding: 21px;
+  }
+}
+
+
 
 </style>
 </head>
@@ -1810,6 +2074,32 @@ footer a {
     </div>
 
 </section>
+
+   
+<!-- JUST LANDED SECTION -->
+<section class="just-landed" id="justLanded">
+  <div class="landed-inner">
+
+    <div class="landed-heading">
+      <div>
+        <span class="landed-eyebrow">Fresh to the collection</span>
+        <h2>Just Landed<span style="color:var(--purple-light)">.</span></h2>
+        <p>Discover exceptional automobiles selected for those who appreciate performance, presence and distinction.</p>
+      </div>
+
+      <a href="showroom.html" class="landed-view-all">
+        EXPLORE SHOWROOM <span>↗</span>
+      </a>
+    </div>
+
+    <div class="landed-grid" id="justLandedCars">
+      <!-- Vehicle cards are added here by JavaScript -->
+    </div>
+
+  </div>
+</section>
+<!-- END JUST LANDED SECTION -->
+
 
 
 <!-- =========================
@@ -2832,6 +3122,87 @@ if (supportsFinePointer) {
     });
 
 }
+
+   
+/* ================= JUST LANDED VEHICLES ================= */
+
+const justLandedVehicles = [
+  {
+    id: "tacoma",
+    brand: "Toyota",
+    name: "Tacoma TRD Pro",
+    year: "2026",
+    image: "images/tacoma-trd-pro.jpg",
+    badge: "NEW ARRIVAL"
+  },
+  {
+    id: "range-sport",
+    brand: "Range Rover",
+    name: "Range Rover Sport",
+    year: "2026",
+    image: "images/range-rover-sport.jpg",
+    badge: "JUST LANDED"
+  },
+  {
+    id: "ranger",
+    brand: "Ford",
+    name: "Ranger Raptor",
+    year: "2026",
+    image: "images/ranger-raptor.jpg",
+    badge: "NEW ARRIVAL"
+  }
+];
+
+const justLandedContainer = document.getElementById("justLandedCars");
+
+if (justLandedContainer) {
+  justLandedContainer.innerHTML = justLandedVehicles.map((car, index) => `
+    <a
+      class="landed-card"
+      href="car-details.html?id=${encodeURIComponent(car.id)}"
+      aria-label="View ${car.year} ${car.brand} ${car.name}"
+    >
+      <div class="landed-image">
+        <img
+          src="${car.image}"
+          alt="${car.year} ${car.brand} ${car.name}"
+          loading="lazy"
+          onerror="this.style.opacity='0.25';"
+        >
+        <span class="landed-badge">${car.badge}</span>
+        <span class="landed-number">0${index + 1} / 03</span>
+      </div>
+
+      <div class="landed-info">
+        <div class="landed-brand">${car.brand} · ${car.year}</div>
+        <h3>${car.name}</h3>
+
+        <div class="landed-meta">
+          <span>VIEW VEHICLE DETAILS</span>
+          <span class="landed-explore">EXPLORE <b>↗</b></span>
+        </div>
+      </div>
+    </a>
+  `).join("");
+
+  const landedCards = justLandedContainer.querySelectorAll(".landed-card");
+
+  if ("IntersectionObserver" in window) {
+    const landedObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    landedCards.forEach(card => landedObserver.observe(card));
+  } else {
+    landedCards.forEach(card => card.classList.add("is-visible"));
+  }
+}
+
 
 
 </script>
