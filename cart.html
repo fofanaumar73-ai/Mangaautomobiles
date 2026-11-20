@@ -1,0 +1,1359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#251633">
+<title>Your Cart | MANGAAUTOMOBILES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #f5f0e8;
+  --white: #fffdf9;
+  --purple: #251633;
+  --purple-light: #382449;
+  --purple-soft: #eee8f1;
+  --gold: #bd9b70;
+  --text: #292331;
+  --muted: #827a89;
+  --border: rgba(37,22,51,.12);
+  --shadow: 0 18px 55px rgba(37,22,51,.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* PRELOADER */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--purple);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+.preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 34px;
+  letter-spacing: 5px;
+}
+
+.loader-line {
+  width: 120px;
+  height: 2px;
+  background: rgba(255,255,255,.2);
+  overflow: hidden;
+}
+
+.loader-line::after {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--gold);
+  animation: loading 1.2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(320%); }
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 16px 6%;
+  transition: .35s ease;
+}
+
+header.scrolled {
+  padding: 10px 6%;
+  background: rgba(245,240,232,.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 5px 30px rgba(37,22,51,.07);
+}
+
+.navbar {
+  max-width: 1450px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--purple);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.logo span {
+  display: block;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 5px;
+  margin-top: 3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 12px;
+  color: #514958;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.cart-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: var(--purple);
+  color: white;
+  border-radius: 50%;
+  position: relative;
+  font-size: 18px;
+}
+
+.cart-count {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background: var(--gold);
+  color: white;
+  border: 2px solid var(--cream);
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  border-radius: 50%;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--purple);
+  font-size: 27px;
+}
+
+/* HERO */
+
+.cart-hero {
+  background:
+    linear-gradient(100deg, rgba(25,14,35,.97), rgba(25,14,35,.75)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85") center/cover;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  padding: 140px 8% 65px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-hero::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%;
+  right: -120px;
+  bottom: -300px;
+  box-shadow: 0 0 0 55px rgba(255,255,255,.025),
+              0 0 0 110px rgba(255,255,255,.02);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: slideUp .8s ease both;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.cart-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(45px,7vw,75px);
+  color: white;
+  font-weight: 500;
+}
+
+.cart-hero p {
+  max-width: 500px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.8;
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+/* BREADCRUMB */
+
+.breadcrumb {
+  padding: 20px 7%;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.breadcrumb a {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.breadcrumb span {
+  margin: 0 9px;
+  color: var(--gold);
+}
+
+/* CART AREA */
+
+.cart-section {
+  padding: 35px 7% 110px;
+}
+
+.cart-container {
+  max-width: 1450px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  align-items: start;
+  gap: 30px;
+}
+
+.cart-main {
+  min-width: 0;
+}
+
+.cart-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.cart-heading h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--purple);
+  font-size: 29px;
+  font-weight: 600;
+}
+
+.cart-heading p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.continue-shopping {
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 800;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 4px;
+}
+
+/* CART ITEMS */
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 185px 1fr;
+  gap: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  transition: .35s;
+  animation: slideUp .5s ease both;
+}
+
+.cart-item:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+
+.item-image {
+  height: 155px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--cream);
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .6s;
+}
+
+.cart-item:hover .item-image img {
+  transform: scale(1.06);
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.item-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.item-brand {
+  font-size: 9px;
+  color: var(--gold);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 7px;
+}
+
+.item-details h3 {
+  color: var(--purple);
+  font-family: 'Playfair Display', serif;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.item-condition {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 11px;
+  border-radius: 30px;
+  background: var(--purple-soft);
+  color: var(--purple);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.remove-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: #9b7f7f;
+  border-radius: 50%;
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: .3s;
+}
+
+.remove-btn:hover {
+  background: #f7e5e5;
+  color: #a33b3b;
+  border-color: #f7e5e5;
+}
+
+.item-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.item-price-label {
+  font-size: 9px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  color: var(--purple);
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  overflow: hidden;
+  height: 36px;
+}
+
+.quantity-control button {
+  width: 35px;
+  height: 35px;
+  border: 0;
+  background: transparent;
+  color: var(--purple);
+  font-size: 17px;
+  transition: .2s;
+}
+
+.quantity-control button:hover {
+  background: var(--purple-soft);
+}
+
+.quantity-control span {
+  min-width: 27px;
+  text-align: center;
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* SUMMARY */
+
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  position: sticky;
+  top: 105px;
+  box-shadow: 0 12px 35px rgba(37,22,51,.04);
+}
+
+.summary-card h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--purple);
+  font-size: 27px;
+  margin-bottom: 25px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 17px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.summary-line strong {
+  color: var(--purple);
+  font-size: 12px;
+}
+
+.summary-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+.delivery-label {
+  display: block;
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 11px;
+}
+
+.delivery-select {
+  width: 100%;
+  height: 47px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--cream);
+  color: var(--purple);
+  outline: none;
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+
+.delivery-note {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.total-line span {
+  color: var(--purple);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.total-line strong {
+  color: var(--purple);
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.summary-note {
+  font-size: 9px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 15px;
+}
+
+.checkout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 55px;
+  border: none;
+  border-radius: 50px;
+  background: var(--purple);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 25px;
+  transition: .35s;
+}
+
+.checkout-btn:hover {
+  background: var(--gold);
+  color: var(--purple);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37,22,51,.13);
+}
+
+.checkout-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secure-note {
+  text-align: center;
+  margin-top: 17px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+/* EMPTY CART */
+
+.empty-cart {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 70px 25px;
+  text-align: center;
+  display: none;
+  animation: slideUp .6s ease both;
+}
+
+.empty-cart.show {
+  display: block;
+}
+
+.empty-icon {
+  width: 90px;
+  height: 90px;
+  display: grid;
+  place-items: center;
+  background: var(--purple-soft);
+  color: var(--purple);
+  border-radius: 50%;
+  margin: 0 auto 25px;
+  font-size: 35px;
+}
+
+.empty-cart h2 {
+  color: var(--purple);
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.empty-cart p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 400px;
+  margin: 0 auto 25px;
+}
+
+.empty-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 27px;
+  border-radius: 50px;
+  background: var(--purple);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: .3s;
+}
+
+.empty-btn:hover {
+  background: var(--gold);
+  color: var(--purple);
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+  background: #1b1026;
+  color: white;
+  padding: 65px 7% 25px;
+}
+
+.footer-grid {
+  max-width: 1450px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 45px;
+}
+
+.footer-logo {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+}
+
+.footer-logo span {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 5px;
+  margin-top: 4px;
+}
+
+.footer-about p {
+  color: rgba(255,255,255,.55);
+  font-size: 11px;
+  line-height: 1.9;
+  max-width: 290px;
+  margin-top: 18px;
+}
+
+.footer-column h4 {
+  font-size: 11px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.footer-column a {
+  display: block;
+  color: rgba(255,255,255,.55);
+  font-size: 11px;
+  margin-bottom: 13px;
+  transition: .3s;
+}
+
+.footer-column a:hover {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.footer-bottom {
+  max-width: 1450px;
+  margin: auto;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  color: rgba(255,255,255,.4);
+  font-size: 10px;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1050px) {
+  .cart-container {
+    grid-template-columns: 1fr 330px;
+    gap: 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width: 760px) {
+  header {
+    padding: 14px 5%;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(82%,360px);
+    height: 100vh;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 45px;
+    gap: 30px;
+    box-shadow: -15px 0 40px rgba(0,0,0,.1);
+    transition: .4s;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .cart-hero {
+    min-height: 350px;
+    padding: 130px 6% 60px;
+  }
+
+  .breadcrumb {
+    padding: 18px 5%;
+  }
+
+  .cart-section {
+    padding: 30px 5% 75px;
+  }
+
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    position: static;
+  }
+}
+
+@media(max-width: 480px) {
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .item-image {
+    height: 210px;
+  }
+
+  .item-details h3 {
+    font-size: 21px;
+  }
+
+  .item-bottom {
+    align-items: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-heading h2 {
+    font-size: 25px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="loader-logo">MANGA</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav class="navbar">
+
+    <a href="index.html" class="logo">
+      MANGAAUTOMOBILES
+      <span>DRIVE YOUR DREAM</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="showroom.html">Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon" aria-label="Shopping cart">
+        ♧
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="cart-hero">
+  <div class="hero-content">
+    <div class="eyebrow">Your selection</div>
+    <h1>Your Cart.</h1>
+    <p>
+      Your next dream car could be just a few steps away.
+      Review your selection and prepare for the next stage
+      of your MANGA automotive experience.
+    </p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <a href="showroom.html">Showroom</a>
+  <span>›</span>
+  Your Cart
+</div>
+
+<!-- CART -->
+<section class="cart-section">
+
+  <div class="cart-container" id="cartContainer">
+
+    <!-- CART ITEMS -->
+    <div class="cart-main">
+
+      <div class="cart-heading">
+        <div>
+          <h2>Selected Vehicles</h2>
+          <p id="cartDescription">Review your selected automobiles below.</p>
+        </div>
+
+        <a href="showroom.html" class="continue-shopping">
+          + ADD MORE VEHICLES
+        </a>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="summary-card" id="summaryCard">
+
+      <h2>Order Summary</h2>
+
+      <div class="summary-line">
+        <span>Vehicles selected</span>
+        <strong id="itemCount">0</strong>
+      </div>
+
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <strong id="subtotal">$0</strong>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <label class="delivery-label" for="deliveryMethod">
+        Delivery preference
+      </label>
+
+      <select class="delivery-select" id="deliveryMethod">
+        <option value="Nationwide Delivery">Nationwide Delivery</option>
+        <option value="Showroom Pickup">Showroom Pickup</option>
+        <option value="Surprise Delivery">Surprise Delivery</option>
+      </select>
+
+      <p class="delivery-note" id="deliveryNote">
+        Delivery charges and arrangements will be confirmed by our team.
+      </p>
+
+      <div class="summary-divider"></div>
+
+      <div class="total-line">
+        <span>Estimated Total</span>
+        <strong id="grandTotal">$0</strong>
+      </div>
+
+      <p class="summary-note">
+        This is an estimated vehicle subtotal. Final pricing,
+        delivery arrangements, taxes and other applicable charges
+        will be confirmed before an order is accepted.
+      </p>
+
+      <button class="checkout-btn" id="checkoutBtn">
+        PROCEED TO CHECKOUT <span>↗</span>
+      </button>
+
+      <div class="secure-note">
+        ✧ Your selection is saved in this browser.
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- EMPTY CART -->
+  <div class="empty-cart" id="emptyCart">
+
+    <div class="empty-icon">♧</div>
+
+    <h2>Your Cart Is Waiting.</h2>
+
+    <p>
+      You haven't selected a vehicle yet. Explore our collection
+      and find an automobile that feels like it was made for you.
+    </p>
+
+    <a href="showroom.html" class="empty-btn">
+      EXPLORE SHOWROOM ↗
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-grid">
+
+    <div class="footer-about">
+      <a href="index.html" class="footer-logo">
+        MANGAAUTOMOBILES
+        <span>DRIVE YOUR DREAM</span>
+      </a>
+
+      <p>
+        A destination for exceptional automobiles.
+        Discover a carefully selected range of vehicles
+        and experience automotive shopping with confidence.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>EXPLORE</h4>
+      <a href="index.html">Home</a>
+      <a href="showroom.html">Our Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>YOUR ACCOUNT</h4>
+      <a href="cart.html">Shopping Cart</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="showroom.html">Browse Vehicles</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>ASSISTANCE</h4>
+      <a href="index.html#contact">Vehicle Enquiries</a>
+      <a href="index.html#faq">FAQs</a>
+      <a href="index.html#contact">Speak to Our Team</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> MANGAAUTOMOBILES. All rights reserved.</span>
+    <span>Luxury is a journey. Enjoy the drive.</span>
+  </div>
+
+</footer>
+
+<script>
+/* CART STORAGE */
+
+const CART_KEY = "manga_cart";
+
+const cartItemsContainer = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const emptyCart = document.getElementById("emptyCart");
+const cartContainer = document.getElementById("cartContainer");
+const summaryCard = document.getElementById("summaryCard");
+const deliveryMethod = document.getElementById("deliveryMethod");
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+/* LOAD CART */
+
+function getCart() {
+  try {
+    const savedCart = JSON.parse(localStorage.getItem(CART_KEY));
+    return Array.isArray(savedCart) ? savedCart : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+/* SAVE CART */
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCart();
+}
+
+/* PRICE FORMAT */
+
+function formatPrice(amount) {
+  return "$" + Number(amount || 0).toLocaleString("en-US");
+}
+
+/* SAFE TEXT */
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+/* CART ITEM TOTAL */
+
+function getQuantity(item) {
+  return Math.max(1, Number(item.qty) || 1);
+}
+
+function getUnitPrice(item) {
+  return Math.max(0, Number(item.unitPrice ?? item.price) || 0);
+}
+
+/* RENDER CART */
+
+function renderCart() {
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    cartContainer.style.display = "none";
+    emptyCart.classList.add("show");
+    cartCount.textContent = "0";
+    document.getElementById("cartDescription").textContent =
+      "Your cart is currently empty.";
+    return;
+  }
+
+  cartContainer.style.display = "grid";
+  emptyCart.classList.remove("show");
+
+  cartItemsContainer.innerHTML = cart.map((item, index) => {
+    const quantity = getQuantity(item);
+    const unitPrice = getUnitPrice(item);
+    const name = item.name || item.title || "Selected Vehicle";
+    const brand = item.brand || "Automobile";
+    const image = item.image || "";
+    const condition = item.condition || "Brand New";
+    const imageMarkup = image
+      ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(name)}" loading="lazy">`
+      : `<div style="height:100%;display:grid;place-items:center;color:#827a89;font-size:12px">Vehicle image unavailable</div>`;
+
+    return `
+      <article class="cart-item" data-index="${index}">
+
+        <div class="item-image">
+          ${imageMarkup}
+        </div>
+
+        <div class="item-details">
+
+          <div class="item-top">
+            <div>
+              <div class="item-brand">${escapeHTML(brand)}</div>
+              <h3>${escapeHTML(name)}</h3>
+              <span class="item-condition">${escapeHTML(condition)}</span>
+            </div>
+
+            <button class="remove-btn"
+              data-action="remove"
+              data-index="${index}"
+              aria-label="Remove ${escapeHTML(name)}">
+              ×
+            </button>
+          </div>
+
+          <div class="item-bottom">
+
+            <div>
+              <span class="item-price-label">Price per vehicle</span>
+              <div class="item-price">${formatPrice(unitPrice)}</div>
+            </div>
+
+            <div class="quantity-control">
+              <button data-action="decrease" data-index="${index}" aria-label="Decrease quantity">−</button>
+              <span>${quantity}</span>
+              <button data-action="increase" data-index="${index}" aria-label="Increase quantity">+</button>
+            </div>
+
+          </div>
+
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  document.getElementById("cartDescription").textContent =
+    `${cart.reduce((total, item) => total + getQuantity(item), 0)} vehicle(s) in your selection.`;
+
+  updateSummary();
+}
+
+/* UPDATE SUMMARY */
+
+function updateSummary() {
+  const cart = getCart();
+
+  const quantity = cart.reduce(
+    (total, item) => total + getQuantity(item), 0
+  );
+
+  const subtotal = cart.reduce(
+    (total, item) => total + getUnitPrice(item) * getQuantity(item), 0
+  );
+
+  document.getElementById("itemCount").textContent = quantity;
+  document.getElementById("subtotal").textContent = formatPrice(subtotal);
+  document.getElementById("grandTotal").textContent = formatPrice(subtotal);
+
+  cartCount.textContent = quantity;
+
+  checkoutBtn.disabled = cart.length === 0;
+}
+
+/* UPDATE WHOLE CART */
+
+function updateCart() {
+  renderCart();
+}
+
+/* QUANTITY AND REMOVE ACTIONS */
+
+cartItemsContainer.addEventListener("click", event => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+
+  const index = Number(button.dataset.index);
+  const action = button.dataset.action;
+  const cart = getCart();
+
+  if (!Number.isInteger(index) || !cart[index]) return;
+
+  if (action === "increase") {
+    cart[index].qty = getQuantity(cart[index]) + 1;
+  }
+
+  if (action === "decrease") {
+    const quantity = getQuantity(cart[index]);
+
+    if (quantity > 1) {
+      cart[index].qty = quantity - 1;
+    } else {
+      return;
+    }
+  }
+
+  if (action === "remove") {
+    const confirmed = confirm("Remove this vehicle from your cart?");
+    if (!confirmed) return;
+
+    cart.splice(index, 1);
+  }
+
+  saveCart(cart);
+});
+
+/* DELIVERY PREFERENCE */
+
+const deliveryDescriptions = {
+  "Nationwide Delivery":
+    "Delivery charges and arrangements will be confirmed by our team.",
+  "Showroom Pickup":
+    "Our team will contact you to arrange your showroom collection.",
+  "Surprise Delivery":
+    "Our team will discuss your preferred surprise delivery arrangements."
+};
+
+deliveryMethod.addEventListener("change", () => {
+  document.getElementById("deliveryNote").textContent =
+    deliveryDescriptions[deliveryMethod.value];
+
+  sessionStorage.setItem("manga_delivery", deliveryMethod.value);
+});
+
+/* CHECKOUT */
+
+checkoutBtn.addEventListener("click", () => {
+  const cart = getCart();
+
+  if (!cart.length) return;
+
+  sessionStorage.setItem("manga_delivery", deliveryMethod.value);
+
+  window.location.href = "checkout.html";
+});
+
+/* HEADER */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+  header.classList.toggle("scrolled", window.scrollY > 40);
+}, { passive: true });
+
+/* MOBILE MENU */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  menuToggle.textContent =
+    navLinks.classList.contains("open") ? "×" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.textContent = "☰";
+  });
+});
+
+/* INITIALISE */
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+deliveryMethod.value =
+  sessionStorage.getItem("manga_delivery") || "Nationwide Delivery";
+
+document.getElementById("deliveryNote").textContent =
+  deliveryDescriptions[deliveryMethod.value];
+
+renderCart();
+
+window.addEventListener("load", () => {
+  document.getElementById("preloader").classList.add("hide");
+});
+</script>
+
+</body>
+</html>
