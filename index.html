@@ -1062,6 +1062,15 @@ footer a {
     }
 }
 
+   
+/* Keep the hero underneath the floating header */
+
+.hero {
+    margin-top: 0;
+    padding-top: 100px;
+}
+
+
 </style>
 </head>
 
@@ -1546,6 +1555,24 @@ document.getElementById("skipBtn").addEventListener("click", enterWebsite);
 if (sessionStorage.getItem("mangaIntroSeen") === "true") {
     document.getElementById("intro").classList.add("hide");
 }
+
+   
+/* LIQUID HEADER SCROLL EFFECT */
+
+const mainHeader = document.querySelector("header");
+
+function updateHeader() {
+    if (window.scrollY > 60) {
+        mainHeader.classList.add("scrolled");
+    } else {
+        mainHeader.classList.remove("scrolled");
+    }
+}
+
+window.addEventListener("scroll", updateHeader, { passive: true });
+
+updateHeader();
+
 
 
 /* FEATURED VEHICLES */
