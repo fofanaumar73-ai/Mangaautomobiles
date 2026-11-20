@@ -234,30 +234,78 @@ button {
    NAVIGATION
 ========================= */
 
+
+/* =========================
+   FLOATING LIQUID GLASS HEADER
+========================= */
+
 header {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 1320px;
     z-index: 1000;
+
+    background: rgba(37, 22, 51, 0.24);
+    backdrop-filter: blur(25px) saturate(160%);
+    -webkit-backdrop-filter: blur(25px) saturate(160%);
+
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 28px;
+
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    transition:
+        background .45s ease,
+        border .45s ease,
+        box-shadow .45s ease,
+        top .45s ease,
+        width .45s ease;
+}
+
+header.scrolled {
+    top: 12px;
+    width: 94%;
     background: rgba(244,239,231,.88);
-    backdrop-filter: blur(22px);
-    border-bottom: 1px solid var(--border);
+
+    border-color: rgba(37,22,51,.12);
+
+    box-shadow:
+        0 15px 45px rgba(37,22,51,.13),
+        inset 0 1px 0 rgba(255,255,255,.8);
 }
 
 .navbar {
-    width: 90%;
+    width: 94%;
     max-width: 1200px;
-    height: 85px;
+    min-height: 82px;
     margin: auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+
+    transition: min-height .4s ease;
 }
 
+header.scrolled .navbar {
+    min-height: 72px;
+}
+
+/* BRAND LOGO */
+
 .logo {
-    font-size: 18px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--purple);
+    font-size: 21px;
+    font-weight: 950;
+    letter-spacing: 1.5px;
+    color: #FFFDF9;
+    white-space: nowrap;
+    transition: color .4s ease;
 }
 
 .logo small {
@@ -265,40 +313,217 @@ header {
     font-size: 8px;
     letter-spacing: 5px;
     margin-top: 5px;
+    color: #E8D8BF;
+    transition: color .4s ease;
 }
+
+header.scrolled .logo {
+    color: var(--purple);
+}
+
+header.scrolled .logo small {
+    color: var(--muted);
+}
+
+/* NAVIGATION LINKS */
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 28px;
 }
 
 .nav-links a {
+    position: relative;
     font-size: 10px;
-    letter-spacing: 1.5px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
-    transition: .3s;
+    color: #FFFDF9;
+    transition: color .35s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: #D6BE9A;
+    transition: width .35s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+header.scrolled .nav-links a {
+    color: var(--purple);
 }
 
 .nav-links a:hover {
+    color: #D6BE9A;
+}
+
+header.scrolled .nav-links a:hover {
     color: #8868A2;
 }
 
+/* CART BUTTON */
+
 .nav-cart {
-    border: 1px solid var(--purple);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 13px 19px;
     border-radius: 50px;
-    padding: 12px 19px;
+
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.45);
+
+    color: white;
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1px;
+
+    transition: all .35s ease;
 }
+
+.nav-cart:hover {
+    background: var(--cream);
+    color: var(--purple);
+    transform: translateY(-2px);
+}
+
+header.scrolled .nav-cart {
+    background: var(--purple);
+    color: white;
+    border-color: var(--purple);
+}
+
+/* MOBILE MENU BUTTON */
 
 .menu-btn {
     display: none;
-    background: none;
+    background: transparent;
     border: none;
-    color: var(--purple);
-    font-size: 25px;
+    color: white;
+    font-size: 27px;
+    padding: 5px;
+    transition: color .4s ease;
 }
+
+header.scrolled .menu-btn {
+    color: var(--purple);
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 850px) {
+
+    header {
+        width: 94%;
+        top: 12px;
+        border-radius: 23px;
+    }
+
+    .navbar {
+        min-height: 75px;
+        width: 91%;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .logo small {
+        font-size: 7px;
+        letter-spacing: 4px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+
+        padding: 12px;
+        border-radius: 22px;
+
+        background: rgba(37,22,51,.94);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        border: 1px solid rgba(255,255,255,.17);
+        box-shadow: 0 20px 45px rgba(0,0,0,.2);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px) scale(.98);
+
+        transition: .35s ease;
+    }
+
+    .nav-links.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    .nav-links a,
+    header.scrolled .nav-links a {
+        color: white;
+        padding: 17px 15px;
+        border-radius: 12px;
+        font-size: 11px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255,255,255,.09);
+        color: #D6BE9A;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-cart {
+        padding: 11px 14px;
+        font-size: 9px;
+    }
+}
+
+@media(max-width: 420px) {
+    .logo {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .logo small {
+        font-size: 6px;
+        letter-spacing: 3px;
+    }
+
+    .navbar {
+        width: 93%;
+    }
+
+    .nav-cart {
+        padding: 10px 11px;
+    }
+}
+
 
 /* =========================
    HERO SECTION
