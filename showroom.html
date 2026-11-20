@@ -1,0 +1,2021 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#251633">
+<title>Luxury Car Showroom | MANGAAUTOMOBILES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #f5f0e8;
+  --cream-dark: #eae2d7;
+  --white: #fffdf9;
+  --purple: #251633;
+  --purple-light: #382449;
+  --purple-soft: #eee8f1;
+  --gold: #bd9b70;
+  --text: #292331;
+  --muted: #827a89;
+  --border: rgba(37,22,51,.12);
+  --shadow: 0 18px 55px rgba(37,22,51,.09);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--purple);
+  color: white;
+}
+
+/* PRELOADER */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+.preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 5vw, 42px);
+  letter-spacing: 5px;
+}
+
+.loader-line {
+  width: 130px;
+  height: 2px;
+  background: rgba(255,255,255,.18);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.loader-line::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 45%;
+  background: var(--gold);
+  animation: loading 1.2s infinite ease-in-out;
+}
+
+@keyframes loading {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(330%); }
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 16px 6%;
+  transition: .4s ease;
+}
+
+header.scrolled {
+  padding: 10px 6%;
+  background: rgba(245,240,232,.88);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 5px 30px rgba(37,22,51,.07);
+  border-bottom: 1px solid rgba(37,22,51,.07);
+}
+
+.navbar {
+  max-width: 1450px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--purple);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.logo span {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 5px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: #514958;
+  font-size: 12px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.cart-link {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: white;
+  display: grid;
+  place-items: center;
+  position: relative;
+  font-size: 17px;
+  transition: .3s;
+}
+
+.cart-link:hover {
+  transform: translateY(-3px);
+  background: var(--gold);
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: white;
+  font-size: 10px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--cream);
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--purple);
+  font-size: 27px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 710px;
+  height: 94vh;
+  max-height: 900px;
+  position: relative;
+  background: var(--purple);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 130px 8% 80px;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(24,13,34,.97) 0%, rgba(24,13,34,.86) 36%, rgba(24,13,34,.18) 100%),
+    linear-gradient(0deg, rgba(24,13,34,.5), transparent 45%),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90") center 55%/cover;
+  z-index: -2;
+  transform: scale(1.04);
+  animation: heroZoom 13s ease-out forwards;
+}
+
+@keyframes heroZoom {
+  to { transform: scale(1); }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 50%;
+  right: -180px;
+  top: 80px;
+  box-shadow: 0 0 0 65px rgba(255,255,255,.025),
+              0 0 0 130px rgba(255,255,255,.02);
+  z-index: -1;
+}
+
+.hero-content {
+  max-width: 760px;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  animation: slideUp .8s .15s both;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 35px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 7.5vw, 100px);
+  line-height: 1.04;
+  font-weight: 500;
+  letter-spacing: -2px;
+  animation: slideUp .9s .3s both;
+}
+
+.hero h1 em {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.hero-description {
+  color: rgba(255,255,255,.72);
+  max-width: 490px;
+  line-height: 1.9;
+  font-size: 14px;
+  margin-top: 25px;
+  animation: slideUp .9s .45s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+  animation: slideUp .9s .6s both;
+}
+
+.btn {
+  min-height: 52px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: .35s ease;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--purple);
+}
+
+.btn-primary:hover {
+  background: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+
+.btn-outline {
+  border-color: rgba(255,255,255,.45);
+  color: white;
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  background: white;
+  color: var(--purple);
+  transform: translateY(-4px);
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 35px;
+  left: 8%;
+  right: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255,255,255,.65);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scroll-indicator span {
+  width: 45px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* TRUST STRIP */
+
+.trust-strip {
+  background: var(--white);
+  padding: 28px 6%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.trust-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+
+.trust-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--purple-soft);
+  color: var(--purple);
+  font-size: 17px;
+}
+
+.trust-item strong {
+  display: block;
+  font-size: 11px;
+  color: var(--purple);
+  margin-bottom: 4px;
+}
+
+.trust-item small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* GENERAL SECTION */
+
+.section {
+  padding: 105px 7%;
+}
+
+.section-heading {
+  max-width: 650px;
+  margin-bottom: 43px;
+}
+
+.section-kicker {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4.5vw, 55px);
+  color: var(--purple);
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-top: 15px;
+}
+
+/* BRAND SECTION */
+
+.brand-section {
+  background: var(--cream);
+  padding-top: 85px;
+  padding-bottom: 75px;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  gap: 12px;
+}
+
+.brand-card {
+  background: rgba(255,255,255,.6);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 23px 12px;
+  text-align: center;
+  color: var(--purple);
+  transition: .35s;
+  cursor: pointer;
+}
+
+.brand-card:hover,
+.brand-card.selected {
+  background: var(--purple);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.brand-card strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.brand-card span {
+  font-size: 9px;
+  opacity: .65;
+}
+
+/* SHOWROOM */
+
+.showroom-section {
+  background: var(--white);
+}
+
+.showroom-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.showroom-top .section-heading {
+  margin-bottom: 0;
+}
+
+.catalogue-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 38px;
+  margin-bottom: 24px;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 230px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: var(--cream);
+  padding: 0 48px 0 20px;
+  outline: none;
+  color: var(--purple);
+  font-size: 12px;
+  transition: .3s;
+}
+
+.search-box input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(189,155,112,.12);
+}
+
+.search-box span {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 17px;
+}
+
+.filter-select {
+  height: 52px;
+  min-width: 155px;
+  border: 1px solid var(--border);
+  background: var(--cream);
+  border-radius: 50px;
+  padding: 0 17px;
+  outline: none;
+  color: var(--purple);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-color: var(--gold);
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.filter-tab {
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: transparent;
+  padding: 10px 17px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: white;
+}
+
+.results-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.results-line strong {
+  color: var(--purple);
+}
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+
+.vehicle-card {
+  background: var(--cream);
+  border: 1px solid rgba(37,22,51,.07);
+  border-radius: 19px;
+  overflow: hidden;
+  transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s;
+  position: relative;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-9px);
+  box-shadow: 0 22px 45px rgba(37,22,51,.13);
+}
+
+.vehicle-image {
+  height: 235px;
+  position: relative;
+  overflow: hidden;
+  background: #e4ded5;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.vehicle-card:hover .vehicle-image img {
+  transform: scale(1.07);
+}
+
+.vehicle-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  border-radius: 30px;
+  background: rgba(255,253,249,.9);
+  backdrop-filter: blur(10px);
+  color: var(--purple);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.vehicle-year {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  color: white;
+  background: rgba(37,22,51,.75);
+  backdrop-filter: blur(10px);
+  padding: 7px 11px;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.vehicle-info {
+  padding: 22px;
+}
+
+.vehicle-brand {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.vehicle-info h3 {
+  color: var(--purple);
+  font-family: 'Playfair Display', serif;
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.vehicle-meta {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vehicle-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.vehicle-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 17px;
+}
+
+.price-label {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.vehicle-price {
+  color: var(--purple);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.details-btn {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  transition: .3s;
+}
+
+.details-btn:hover {
+  background: var(--gold);
+  transform: rotate(-35deg);
+}
+
+.no-results {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 65px 20px;
+  border-radius: 20px;
+  background: var(--cream);
+}
+
+.no-results h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--purple);
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.no-results p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* EXPERIENCE BANNER */
+
+.experience {
+  padding: 95px 7%;
+  background: var(--purple);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.1);
+  right: -130px;
+  top: -220px;
+  box-shadow: 0 0 0 55px rgba(255,255,255,.025),
+              0 0 0 110px rgba(255,255,255,.02);
+}
+
+.experience-inner {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.experience-text {
+  max-width: 680px;
+}
+
+.experience-text .section-kicker {
+  color: var(--gold);
+}
+
+.experience-text h2 {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: clamp(35px,5vw,58px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.experience-text p {
+  color: rgba(255,255,255,.67);
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 550px;
+  margin-top: 17px;
+}
+
+/* DELIVERY */
+
+.delivery-section {
+  background: var(--cream);
+}
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.delivery-card {
+  background: var(--white);
+  padding: 35px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  transition: .35s;
+}
+
+.delivery-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow);
+}
+
+.delivery-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--purple-soft);
+  color: var(--purple);
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+
+.delivery-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+
+.delivery-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* FOOTER */
+
+footer {
+  background: #1b1026;
+  color: white;
+  padding: 70px 7% 25px;
+}
+
+.footer-grid {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 45px;
+  padding-bottom: 50px;
+}
+
+.footer-logo {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.footer-logo span {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 5px;
+  margin-top: 4px;
+}
+
+.footer-about p {
+  color: rgba(255,255,255,.57);
+  font-size: 11px;
+  line-height: 1.9;
+  max-width: 290px;
+  margin-top: 20px;
+}
+
+.footer-column h4 {
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+
+.footer-column a {
+  display: block;
+  color: rgba(255,255,255,.58);
+  font-size: 11px;
+  margin-bottom: 14px;
+  transition: .3s;
+}
+
+.footer-column a:hover {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: auto;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: rgba(255,255,255,.43);
+  font-size: 10px;
+}
+
+/* BACK TO TOP */
+
+.back-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--purple);
+  border: none;
+  z-index: 900;
+  font-size: 19px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: .35s;
+  box-shadow: 0 8px 25px rgba(37,22,51,.2);
+}
+
+.back-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-top:hover {
+  background: var(--purple);
+  color: white;
+}
+
+/* REVEAL ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1050px) {
+  .vehicle-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width: 760px) {
+  header {
+    padding: 14px 5%;
+  }
+
+  header.scrolled {
+    padding: 10px 5%;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(82%,360px);
+    height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 45px;
+    gap: 30px;
+    box-shadow: -15px 0 40px rgba(0,0,0,.1);
+    transition: .4s ease;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    min-height: 690px;
+    height: 90vh;
+    padding: 120px 7% 90px;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(90deg, rgba(24,13,34,.94), rgba(24,13,34,.55)),
+      linear-gradient(0deg, rgba(24,13,34,.6), transparent),
+      url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85") center/cover;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 12vw, 76px);
+  }
+
+  .hero-bottom {
+    left: 7%;
+    right: 7%;
+    font-size: 8px;
+  }
+
+  .trust-strip {
+    grid-template-columns: repeat(2,1fr);
+    padding: 25px 5%;
+    gap: 25px 10px;
+  }
+
+  .trust-item {
+    justify-content: flex-start;
+  }
+
+  .section {
+    padding: 75px 5%;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .catalogue-tools {
+    align-items: stretch;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .filter-select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .vehicle-grid {
+    gap: 15px;
+  }
+
+  .vehicle-image {
+    height: 180px;
+  }
+
+  .vehicle-info {
+    padding: 16px;
+  }
+
+  .vehicle-info h3 {
+    font-size: 19px;
+  }
+
+  .vehicle-price {
+    font-size: 15px;
+  }
+
+  .vehicle-meta {
+    gap: 8px;
+  }
+
+  .experience {
+    padding: 75px 6%;
+  }
+
+  .experience-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .delivery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+  }
+}
+
+@media(max-width: 430px) {
+  .vehicle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-image {
+    height: 235px;
+  }
+
+  .hero-description {
+    font-size: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-line {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="loader-logo">MANGA</div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      MANGAAUTOMOBILES
+      <span>DRIVE YOUR DREAM</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="showroom.html" class="active">Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+        ♧
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">The MANGA Collection</div>
+
+    <h1>
+      Find Your<br>
+      <em>Next Drive.</em>
+    </h1>
+
+    <p class="hero-description">
+      Explore an exceptional collection of luxury, performance and
+      everyday vehicles. Discover your perfect automobile with a
+      buying experience designed around you.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#collection" class="btn btn-primary">
+        EXPLORE COLLECTION <span>↗</span>
+      </a>
+      <a href="index.html#contact" class="btn btn-outline">
+        TALK TO OUR TEAM
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span>Luxury. Performance. Confidence.</span>
+    <div class="scroll-indicator">
+      SCROLL TO EXPLORE <span></span> ↓
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+  <div class="trust-item">
+    <div class="trust-icon">✧</div>
+    <div>
+      <strong>Curated Collection</strong>
+      <small>Vehicles worth experiencing</small>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon">◇</div>
+    <div>
+      <strong>Flexible Conditions</strong>
+      <small>New and pre-owned options</small>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon">⌖</div>
+    <div>
+      <strong>Nationwide Delivery</strong>
+      <small>Across Nigeria</small>
+    </div>
+  </div>
+
+  <div class="trust-item">
+    <div class="trust-icon">♧</div>
+    <div>
+      <strong>Personal Assistance</strong>
+      <small>Support throughout your journey</small>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="section brand-section" id="brands">
+  <div class="section-heading reveal">
+    <div class="section-kicker">Explore by manufacturer</div>
+    <h2>Names That Define<br>Automotive Excellence.</h2>
+    <p>
+      From refined luxury to bold performance, discover vehicles
+      from some of the world's most recognised automotive brands.
+    </p>
+  </div>
+
+  <div class="brand-grid reveal">
+    <button class="brand-card" data-brand="Toyota">
+      <strong>TOYOTA</strong>
+      <span>Explore collection ↗</span>
+    </button>
+
+    <button class="brand-card" data-brand="Mercedes-Benz">
+      <strong>MERCEDES-BENZ</strong>
+      <span>Explore collection ↗</span>
+    </button>
+
+    <button class="brand-card" data-brand="Range Rover">
+      <strong>RANGE ROVER</strong>
+      <span>Explore collection ↗</span>
+    </button>
+
+    <button class="brand-card" data-brand="Lamborghini">
+      <strong>LAMBORGHINI</strong>
+      <span>Explore collection ↗</span>
+    </button>
+
+    <button class="brand-card" data-brand="Cadillac">
+      <strong>CADILLAC</strong>
+      <span>Explore collection ↗</span>
+    </button>
+
+    <button class="brand-card" data-brand="Ford">
+      <strong>FORD</strong>
+      <span>Explore collection ↗</span>
+    </button>
+  </div>
+</section>
+
+<!-- VEHICLE COLLECTION -->
+<section class="section showroom-section" id="collection">
+  <div class="showroom-top">
+    <div class="section-heading reveal">
+      <div class="section-kicker">The vehicle collection</div>
+      <h2>Discover Your<br>Perfect Automobile.</h2>
+      <p>
+        Browse our featured selection and find a vehicle that
+        matches your lifestyle, taste and ambition.
+      </p>
+    </div>
+  </div>
+
+  <div class="catalogue-tools reveal">
+    <div class="search-box">
+      <input type="search" id="searchInput" placeholder="Search make, model or year...">
+      <span>⌕</span>
+    </div>
+
+    <select class="filter-select" id="brandFilter" aria-label="Filter by brand">
+      <option value="all">All Brands</option>
+      <option value="Toyota">Toyota</option>
+      <option value="Mercedes-Benz">Mercedes-Benz</option>
+      <option value="Range Rover">Range Rover</option>
+      <option value="Lamborghini">Lamborghini</option>
+      <option value="Cadillac">Cadillac</option>
+      <option value="Ford">Ford</option>
+    </select>
+
+    <select class="filter-select" id="conditionFilter" aria-label="Filter by condition">
+      <option value="all">All Conditions</option>
+      <option value="Brand New">Brand New</option>
+      <option value="Foreign Used">Foreign Used</option>
+      <option value="Nigerian Used">Nigerian Used</option>
+    </select>
+
+    <select class="filter-select" id="sortFilter" aria-label="Sort vehicles">
+      <option value="default">Sort: Featured</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+      <option value="newest">Newest First</option>
+    </select>
+  </div>
+
+  <div class="filter-tabs reveal">
+    <button class="filter-tab active" data-category="all">All Vehicles</button>
+    <button class="filter-tab" data-category="SUV">SUVs</button>
+    <button class="filter-tab" data-category="Pickup">Pickups</button>
+    <button class="filter-tab" data-category="Luxury">Luxury</button>
+    <button class="filter-tab" data-category="Performance">Performance</button>
+  </div>
+
+  <div class="results-line">
+    <span>Showing <strong id="resultCount">18</strong> vehicles</span>
+    <span>Prices displayed in <strong>USD ($)</strong></span>
+  </div>
+
+  <div class="vehicle-grid" id="vehicleGrid"></div>
+</section>
+
+<!-- EXPERIENCE BANNER -->
+<section class="experience">
+  <div class="experience-inner reveal">
+    <div class="experience-text">
+      <div class="section-kicker">Beyond the purchase</div>
+      <h2>Your Next Chapter<br>Starts Behind the Wheel.</h2>
+      <p>
+        Finding your next vehicle should feel just as special as
+        driving it. Our team is here to help you explore your options
+        and make your next automotive decision with confidence.
+      </p>
+    </div>
+
+    <a href="index.html#contact" class="btn btn-primary">
+      GET IN TOUCH <span>↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="section delivery-section">
+  <div class="section-heading reveal">
+    <div class="section-kicker">A convenient experience</div>
+    <h2>Choose How You<br>Receive Your Vehicle.</h2>
+    <p>
+      We offer flexible vehicle handover options to make the
+      experience more convenient for you.
+    </p>
+  </div>
+
+  <div class="delivery-grid">
+    <div class="delivery-card reveal">
+      <div class="delivery-icon">⌖</div>
+      <h3>Nationwide Delivery</h3>
+      <p>
+        Have your selected vehicle delivered to your preferred
+        location across Nigeria, subject to delivery arrangements.
+      </p>
+    </div>
+
+    <div class="delivery-card reveal">
+      <div class="delivery-icon">⌂</div>
+      <h3>Showroom Pickup</h3>
+      <p>
+        Visit the showroom, meet the team and arrange to collect
+        your vehicle in person.
+      </p>
+    </div>
+
+    <div class="delivery-card reveal">
+      <div class="delivery-icon">✧</div>
+      <h3>Surprise Delivery</h3>
+      <p>
+        Make a special occasion unforgettable with a personalised
+        vehicle delivery arrangement.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <a href="index.html" class="footer-logo">
+        MANGAAUTOMOBILES
+        <span>DRIVE YOUR DREAM</span>
+      </a>
+      <p>
+        A destination for exceptional automobiles. Discover a
+        carefully selected range of vehicles and experience
+        automotive shopping with confidence.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>EXPLORE</h4>
+      <a href="index.html">Home</a>
+      <a href="showroom.html">Our Showroom</a>
+      <a href="index.html#about">About Us</a>
+      <a href="index.html#contact">Contact Us</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>OUR COLLECTION</h4>
+      <a href="#collection" data-footer-brand="Toyota">Toyota</a>
+      <a href="#collection" data-footer-brand="Mercedes-Benz">Mercedes-Benz</a>
+      <a href="#collection" data-footer-brand="Range Rover">Range Rover</a>
+      <a href="#collection" data-footer-brand="Lamborghini">Lamborghini</a>
+      <a href="#collection" data-footer-brand="Cadillac">Cadillac</a>
+      <a href="#collection" data-footer-brand="Ford">Ford</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>NEED ASSISTANCE?</h4>
+      <a href="index.html#contact">Speak to our team</a>
+      <a href="cart.html">View your cart</a>
+      <a href="index.html#faq">Frequently asked questions</a>
+      <a href="index.html#contact">Vehicle enquiries</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> MANGAAUTOMOBILES. All rights reserved.</span>
+    <span>Luxury is a journey. Enjoy the drive.</span>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+/* VEHICLE DATA
+   The prices below are demonstration prices.
+   Update them with your approved dealership prices before publishing.
+*/
+
+const vehicles = [
+  {
+    id: "tacoma",
+    brand: "Toyota",
+    name: "Tacoma TRD Pro",
+    year: 2026,
+    type: "Pickup",
+    price: 58000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "4runner",
+    brand: "Toyota",
+    name: "4Runner Trailhunter",
+    year: 2026,
+    type: "SUV",
+    price: 62000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "highlander",
+    brand: "Toyota",
+    name: "Highlander Platinum",
+    year: 2026,
+    type: "SUV",
+    price: 52000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "gle",
+    brand: "Mercedes-Benz",
+    name: "GLE 450 4MATIC",
+    year: 2026,
+    type: "Luxury",
+    price: 89000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "gls",
+    brand: "Mercedes-Benz",
+    name: "GLS 580",
+    year: 2026,
+    type: "Luxury",
+    price: 118000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "g550",
+    brand: "Mercedes-Benz",
+    name: "G 550",
+    year: 2026,
+    type: "Luxury",
+    price: 155000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1520031441872-265569f8c8c4?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "range-sport",
+    brand: "Range Rover",
+    name: "Range Rover Sport",
+    year: 2026,
+    type: "SUV",
+    price: 112000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "range-autobiography",
+    brand: "Range Rover",
+    name: "Range Rover Autobiography",
+    year: 2026,
+    type: "Luxury",
+    price: 185000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "velar",
+    brand: "Range Rover",
+    name: "Range Rover Velar",
+    year: 2026,
+    type: "SUV",
+    price: 78000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "urus",
+    brand: "Lamborghini",
+    name: "Urus SE",
+    year: 2026,
+    type: "Performance",
+    price: 265000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Hybrid"
+  },
+  {
+    id: "revuelto",
+    brand: "Lamborghini",
+    name: "Revuelto",
+    year: 2026,
+    type: "Performance",
+    price: 610000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Hybrid"
+  },
+  {
+    id: "temerario",
+    brand: "Lamborghini",
+    name: "Temerario",
+    year: 2026,
+    type: "Performance",
+    price: 320000,
+    condition: ["Brand New"],
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Hybrid"
+  },
+  {
+    id: "escalade",
+    brand: "Cadillac",
+    name: "Escalade Premium Luxury",
+    year: 2026,
+    type: "Luxury",
+    price: 125000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "escalade-esv",
+    brand: "Cadillac",
+    name: "Escalade ESV",
+    year: 2026,
+    type: "SUV",
+    price: 138000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "escalade-iq",
+    brand: "Cadillac",
+    name: "Escalade IQ",
+    year: 2026,
+    type: "Luxury",
+    price: 145000,
+    condition: ["Brand New"],
+    image: "https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Electric"
+  },
+  {
+    id: "ranger",
+    brand: "Ford",
+    name: "Ranger Raptor",
+    year: 2026,
+    type: "Pickup",
+    price: 59000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "f150",
+    brand: "Ford",
+    name: "F-150 Platinum",
+    year: 2026,
+    type: "Pickup",
+    price: 79000,
+    condition: ["Brand New", "Foreign Used"],
+    image: "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Petrol"
+  },
+  {
+    id: "everest",
+    brand: "Ford",
+    name: "Everest Platinum",
+    year: 2026,
+    type: "SUV",
+    price: 57000,
+    condition: ["Brand New", "Foreign Used", "Nigerian Used"],
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=85",
+    transmission: "Automatic",
+    fuel: "Diesel"
+  }
+];
+
+/* FILTER STATE */
+
+let activeCategory = "all";
+let activeBrand = "all";
+
+const vehicleGrid = document.getElementById("vehicleGrid");
+const searchInput = document.getElementById("searchInput");
+const brandFilter = document.getElementById("brandFilter");
+const conditionFilter = document.getElementById("conditionFilter");
+const sortFilter = document.getElementById("sortFilter");
+
+/* FORMAT PRICE */
+
+function formatPrice(price) {
+  return "$" + Number(price).toLocaleString("en-US");
+}
+
+/* VEHICLE CARDS */
+
+function renderVehicles() {
+  let filtered = [...vehicles];
+
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  const selectedBrand = brandFilter.value;
+  const selectedCondition = conditionFilter.value;
+  const selectedSort = sortFilter.value;
+
+  if (searchTerm) {
+    filtered = filtered.filter(car =>
+      `${car.brand} ${car.name} ${car.year} ${car.type}`
+        .toLowerCase()
+        .includes(searchTerm)
+    );
+  }
+
+  if (selectedBrand !== "all") {
+    filtered = filtered.filter(car => car.brand === selectedBrand);
+  }
+
+  if (activeBrand !== "all") {
+    filtered = filtered.filter(car => car.brand === activeBrand);
+  }
+
+  if (selectedCondition !== "all") {
+    filtered = filtered.filter(car =>
+      car.condition.includes(selectedCondition)
+    );
+  }
+
+  if (activeCategory !== "all") {
+    filtered = filtered.filter(car => car.type === activeCategory);
+  }
+
+  if (selectedSort === "low") {
+    filtered.sort((a,b) => a.price - b.price);
+  }
+
+  if (selectedSort === "high") {
+    filtered.sort((a,b) => b.price - a.price);
+  }
+
+  if (selectedSort === "newest") {
+    filtered.sort((a,b) => b.year - a.year);
+  }
+
+  document.getElementById("resultCount").textContent = filtered.length;
+
+  if (!filtered.length) {
+    vehicleGrid.innerHTML = `
+      <div class="no-results">
+        <h3>No vehicles found</h3>
+        <p>Try another search or adjust your filters.</p>
+      </div>
+    `;
+    return;
+  }
+
+  vehicleGrid.innerHTML = filtered.map((car, index) => `
+    <article class="vehicle-card reveal visible" style="transition-delay:${(index % 3) * 70}ms">
+      <a href="car-details.html?id=${encodeURIComponent(car.id)}">
+        <div class="vehicle-image">
+          <img
+            src="${car.image}"
+            alt="${car.year} ${car.brand} ${car.name}"
+            loading="lazy"
+          >
+          <span class="vehicle-badge">${car.brand}</span>
+          <span class="vehicle-year">${car.year}</span>
+        </div>
+      </a>
+
+      <div class="vehicle-info">
+        <div class="vehicle-brand">${car.brand}</div>
+        <h3>${car.name}</h3>
+
+        <div class="vehicle-meta">
+          <span>⚙ ${car.transmission}</span>
+          <span>⛽ ${car.fuel}</span>
+          <span>✧ ${car.type}</span>
+        </div>
+
+        <div class="vehicle-bottom">
+          <div>
+            <span class="price-label">Starting from</span>
+            <div class="vehicle-price">${formatPrice(car.price)}</div>
+          </div>
+
+          <a
+            href="car-details.html?id=${encodeURIComponent(car.id)}"
+            class="details-btn"
+            aria-label="View ${car.name} details"
+          >↗</a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+/* SEARCH AND FILTER EVENTS */
+
+searchInput.addEventListener("input", renderVehicles);
+brandFilter.addEventListener("change", () => {
+  activeBrand = "all";
+  document.querySelectorAll(".brand-card").forEach(card => card.classList.remove("selected"));
+  renderVehicles();
+});
+conditionFilter.addEventListener("change", renderVehicles);
+sortFilter.addEventListener("change", renderVehicles);
+
+document.querySelectorAll(".filter-tab").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-tab").forEach(tab => tab.classList.remove("active"));
+    button.classList.add("active");
+    activeCategory = button.dataset.category;
+    renderVehicles();
+  });
+});
+
+/* BRAND SHORTCUTS */
+
+function selectBrand(brand) {
+  activeBrand = brand;
+  brandFilter.value = "all";
+
+  document.querySelectorAll(".brand-card").forEach(card => {
+    card.classList.toggle("selected", card.dataset.brand === brand);
+  });
+
+  activeCategory = "all";
+  document.querySelectorAll(".filter-tab").forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.category === "all");
+  });
+
+  renderVehicles();
+
+  document.getElementById("collection").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+document.querySelectorAll(".brand-card").forEach(card => {
+  card.addEventListener("click", () => selectBrand(card.dataset.brand));
+});
+
+document.querySelectorAll("[data-footer-brand]").forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    selectBrand(link.dataset.footerBrand);
+  });
+});
+
+/* HEADER SCROLL EFFECT */
+
+const header = document.getElementById("header");
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", () => {
+  header.classList.toggle("scrolled", window.scrollY > 40);
+  backTop.classList.toggle("show", window.scrollY > 500);
+}, { passive: true });
+
+backTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* MOBILE MENU */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  document.body.classList.toggle("menu-open");
+  menuToggle.textContent = navLinks.classList.contains("open") ? "×" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    menuToggle.textContent = "☰";
+  });
+});
+
+/* CART COUNT */
+
+function updateCartCount() {
+  let cart = [];
+
+  try {
+    cart = JSON.parse(localStorage.getItem("manga_cart")) || [];
+  } catch (error) {
+    cart = [];
+  }
+
+  const count = cart.reduce((total, item) => total + (Number(item.qty) || 1), 0);
+  document.getElementById("cartCount").textContent = count;
+}
+
+/* REVEAL ON SCROLL */
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+function observeRevealElements() {
+  document.querySelectorAll(".reveal:not(.visible)").forEach(element => {
+    observer.observe(element);
+  });
+}
+
+/* INITIALISE */
+
+window.addEventListener("load", () => {
+  document.getElementById("preloader").classList.add("hide");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderVehicles();
+updateCartCount();
+observeRevealElements();
+</script>
+
+</body>
+</html>
